@@ -1,0 +1,11 @@
+# Vocal Separation (seperate.py)
+demucs
+torch
+torchaudio
+numpy
+librosa
+soundfile
+scipy
+
+# Vocal Transcription (transcribe_vocal.py)
+faster-whisper
