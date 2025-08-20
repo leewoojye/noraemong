@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Audio Processing and Speech Recognition
 faster-whisper>=0.10.0
 torch>=2.0.0
@@ -18,3 +19,16 @@ scipy>=1.9.0
 
 # Utilities
 pathlib2>=2.3.0
+=======
+# Vocal Separation (seperate.py)
+demucs
+torch
+torchaudio
+numpy
+librosa
+soundfile
+scipy
+
+# Vocal Transcription (transcribe_vocal.py)
+faster-whisper
+>>>>>>> a7152ef68042f9cd96e0809cbf13f229b2f04706
