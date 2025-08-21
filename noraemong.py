@@ -6,6 +6,7 @@ Automatically detects available interfaces and dependencies
 
 import sys
 import os
+import subprocess
 from pathlib import Path
 import platform
 
@@ -59,9 +60,13 @@ def install_tkinter_instructions():
 def get_python_command():
     """Get the correct Python command for this system"""
     import subprocess
+    import platform
     
-    # Try different Python commands
-    commands = ['python3', 'python', 'py']
+    # Windows typically uses 'python', Unix-like systems use 'python3'
+    if platform.system() == "Windows":
+        commands = ['python', 'py', 'python3']
+    else:
+        commands = ['python3', 'python', 'py']
     
     for cmd in commands:
         try:
@@ -72,19 +77,83 @@ def get_python_command():
         except (subprocess.SubprocessError, FileNotFoundError):
             continue
     
-    return 'python3'  # Default fallback
+    # Default fallback based on system
+    return 'python' if platform.system() == "Windows" else 'python3'
+
+def detect_os():
+    """Detect operating system"""
+    system = platform.system()
+    if system == "Windows":
+        return "windows"
+    elif system == "Darwin":
+        return "mac"
+    elif system == "Linux":
+        return "linux"
+    else:
+        return "unknown"
+
+def ask_user_os():
+    """Ask user to confirm their operating system"""
+    detected_os = detect_os()
+    
+    print(f"🔍 Detected OS: {detected_os}")
+    print("\n🖥️ Please confirm your operating system:")
+    print("1. 🪟 Windows")
+    print("2. 🍎 macOS") 
+    print("3. 🐧 Linux")
+    print("4. ❓ Other/Auto-detect")
+    
+    choice = input("\nEnter your choice (1-4): ").strip()
+    
+    if choice == "1":
+        return "windows"
+    elif choice == "2":
+        return "mac"
+    elif choice == "3":
+        return "linux"
+    elif choice == "4":
+        return detected_os
+    else:
+        print(f"⚠️ Invalid choice, using detected OS: {detected_os}")
+        return detected_os
 
 def run_setup():
-    """Run the setup script"""
-    setup_path = Path(__file__).parent / "setup_noraemong.py"
+    """Run the appropriate setup script based on OS"""
+    print("🔧 Starting setup process...")
+    
+    # Ask user for OS confirmation
+    user_os = ask_user_os()
     python_cmd = get_python_command()
     
+    print(f"\n🎯 Setting up for: {user_os}")
+    print(f"🐍 Using Python command: {python_cmd}")
+    
+    # Determine which setup script to run
+    if user_os == "windows":
+        setup_script = "setup_noraemong_win.py"
+    else:  # mac, linux, or unknown
+        setup_script = "setup_noraemong_mac.py"
+    
+    setup_path = Path(__file__).parent / setup_script
+    
     if setup_path.exists():
-        print(f"🚀 Running setup script with {python_cmd}...")
-        os.system(f"{python_cmd} {setup_path}")
+        print(f"🚀 Running {setup_script}...")
+        try:
+            result = subprocess.run([python_cmd, str(setup_path)], 
+                                  check=False, text=True)
+            if result.returncode == 0:
+                print("✅ Setup completed successfully!")
+            else:
+                print("⚠️ Setup completed with some issues")
+        except Exception as e:
+            print(f"❌ Failed to run setup: {e}")
     else:
-        print("❌ setup_noraemong.py not found")
-        print(f"Please run: {python_cmd} -m pip install torch librosa faster-whisper demucs fuzzywuzzy")
+        print(f"❌ Setup script not found: {setup_script}")
+        print("Please install dependencies manually:")
+        if user_os == "windows":
+            print("   python -m pip install torch librosa faster-whisper demucs fuzzywuzzy")
+        else:
+            print("   python3 -m pip install torch librosa faster-whisper demucs fuzzywuzzy")
 
 def run_gui_mode():
     """Run GUI mode"""
@@ -93,7 +162,10 @@ def run_gui_mode():
     
     if gui_path.exists():
         print(f"🖥️ Launching GUI mode with {python_cmd}...")
-        os.system(f"{python_cmd} {gui_path}")
+        try:
+            subprocess.run([python_cmd, str(gui_path)], check=False)
+        except Exception as e:
+            print(f"❌ Failed to launch GUI: {e}")
     else:
         print("❌ GUI not found at src/GUI/gui.py")
 
