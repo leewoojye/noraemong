@@ -147,41 +147,151 @@ def install_optional_dependencies():
     for package, import_name in optional_packages:
         install_package(package, import_name)
 
-def check_system_requirements():
-    """Check system requirements"""
-    print("\n💻 Checking system requirements...")
+def install_tkinter():
+    """Attempt to install tkinter on various systems"""
+    print("\n🔧 Installing tkinter...")
     
-    # Check available disk space
+    system = platform.system().lower()
+    python_cmd = get_python_command()
+    
     try:
-        import shutil
-        free_space = shutil.disk_usage(".").free / (1024 * 1024 * 1024)  # GB
-        if free_space >= 2:
-            print(f"✅ Disk space: {free_space:.1f} GB available")
+        if system == "linux":
+            # Detect Linux distribution
+            if os.path.exists("/etc/debian_version"):
+                # Debian/Ubuntu
+                print("📦 Installing python3-tk (Debian/Ubuntu)...")
+                result = subprocess.run(["sudo", "apt-get", "update"], capture_output=True)
+                result = subprocess.run(["sudo", "apt-get", "install", "-y", "python3-tk"], 
+                                      capture_output=True, text=True)
+                if result.returncode == 0:
+                    print("✅ tkinter installed successfully!")
+                    return True
+                else:
+                    print(f"❌ Failed: {result.stderr}")
+                    
+            elif os.path.exists("/etc/redhat-release"):
+                # RedHat/CentOS/Fedora
+                print("📦 Installing python3-tkinter (RedHat/CentOS/Fedora)...")
+                # Try dnf first, then yum
+                for cmd in ["dnf", "yum"]:
+                    try:
+                        result = subprocess.run(["sudo", cmd, "install", "-y", "python3-tkinter"], 
+                                              capture_output=True, text=True, timeout=300)
+                        if result.returncode == 0:
+                            print("✅ tkinter installed successfully!")
+                            return True
+                    except (subprocess.TimeoutExpired, FileNotFoundError):
+                        continue
+                        
+            elif os.path.exists("/etc/arch-release"):
+                # Arch Linux
+                print("📦 Installing tk (Arch Linux)...")
+                result = subprocess.run(["sudo", "pacman", "-S", "--noconfirm", "tk"], 
+                                      capture_output=True, text=True)
+                if result.returncode == 0:
+                    print("✅ tkinter installed successfully!")
+                    return True
+                    
+        elif system == "darwin":
+            # macOS
+            print("📦 Installing python-tk (macOS with Homebrew)...")
+            try:
+                # Check if Homebrew is installed
+                subprocess.run(["brew", "--version"], capture_output=True, timeout=5)
+                result = subprocess.run(["brew", "install", "python-tk"], 
+                                      capture_output=True, text=True, timeout=300)
+                if result.returncode == 0:
+                    print("✅ tkinter installed successfully!")
+                    return True
+            except (subprocess.TimeoutExpired, FileNotFoundError):
+                print("⚠️ Homebrew not found. Please install from https://brew.sh")
+                
+        elif system == "windows":
+            # Windows - tkinter should be included, try reinstalling Python packages
+            print("📦 Attempting to fix tkinter (Windows)...")
+            result = subprocess.run([python_cmd, "-m", "pip", "install", "--upgrade", "--force-reinstall", "tk"], 
+                                  capture_output=True, text=True)
+            if result.returncode == 0:
+                print("✅ tkinter packages updated!")
+                return True
+                
+    except Exception as e:
+        print(f"❌ Auto-install failed: {e}")
+    
+    return False
+
+def get_python_command():
+    """Get the correct Python command for this system"""
+    import subprocess
+    
+    commands = ['python3', 'python', 'py']
+    
+    for cmd in commands:
+        try:
+            result = subprocess.run([cmd, '--version'], 
+                                  capture_output=True, text=True, timeout=5)
+            if result.returncode == 0 and 'Python 3' in result.stdout:
+                return cmd
+        except (subprocess.SubprocessError, FileNotFoundError):
+            continue
+    
+    return 'python3'
+
+def test_and_install_tkinter():
+    """Test tkinter and offer to install if missing"""
+    print("\n🖥️ Testing GUI support (tkinter)...")
+    
+    try:
+        import tkinter
+        print("✅ tkinter available - GUI mode supported!")
+        return True
+    except ImportError:
+        print("❌ tkinter not available - GUI mode not supported")
+        print("\n💡 tkinter is required for the graphical interface")
+        
+        response = input("Would you like to try auto-installing tkinter? (y/n): ").lower()
+        if response in ['y', 'yes']:
+            if install_tkinter():
+                # Test again after installation
+                try:
+                    import tkinter
+                    print("🎉 tkinter now working! GUI mode available!")
+                    return True
+                except ImportError:
+                    print("❌ tkinter still not working after installation")
+                    print_manual_tkinter_instructions()
+                    return False
+            else:
+                print("❌ Auto-installation failed")
+                print_manual_tkinter_instructions()
+                return False
         else:
-            print(f"⚠️ Low disk space: {free_space:.1f} GB (recommend 2+ GB)")
-    except:
-        print("⚠️ Could not check disk space")
+            print("ℹ️ Skipping tkinter installation")
+            print("🌐 You can still use web mode: python3 noraemong.py cli")
+            return False
+
+def print_manual_tkinter_instructions():
+    """Print manual installation instructions for tkinter"""
+    system = platform.system().lower()
     
-    # Check memory
-    try:
-        import psutil
-        total_memory = psutil.virtual_memory().total / (1024 * 1024 * 1024)  # GB
-        if total_memory >= 4:
-            print(f"✅ Memory: {total_memory:.1f} GB")
-        else:
-            print(f"⚠️ Limited memory: {total_memory:.1f} GB (recommend 4+ GB)")
-    except:
-        print("ℹ️ Could not check memory (install psutil for memory info)")
+    print("\n📋 Manual tkinter installation:")
+    if system == "linux":
+        print("  Ubuntu/Debian: sudo apt-get install python3-tk")
+        print("  CentOS/RHEL:   sudo dnf install python3-tkinter")
+        print("  Fedora:        sudo dnf install python3-tkinter") 
+        print("  Arch Linux:    sudo pacman -S tk")
+    elif system == "darwin":
+        print("  macOS:")
+        print("    1. Install Homebrew: https://brew.sh")
+        print("    2. Run: brew install python-tk")
+        print("    OR reinstall Python from python.org")
+    elif system == "windows":
+        print("  Windows:")
+        print("    1. Reinstall Python from python.org")
+        print("    2. Make sure to check 'tcl/tk and IDLE' during installation")
     
-    # Check for audio support
-    print("🔊 Checking audio support...")
-    try:
-        import pygame
-        pygame.mixer.init()
-        pygame.mixer.quit()
-        print("✅ Audio support available (pygame)")
-    except:
-        print("⚠️ Audio support limited (pygame not working)")
+    python_cmd = get_python_command()
+    print(f"\n🧪 Test with: {python_cmd} -c 'import tkinter; print(\"tkinter works!\")')"
 
 def create_directory_structure():
     """Create required directory structure"""
@@ -212,11 +322,16 @@ def test_imports():
         ("faster_whisper", "Faster Whisper"),
         ("demucs", "Demucs"),
         ("fuzzywuzzy", "FuzzyWuzzy"),
-        ("pygame", "Pygame"),
-        ("tkinter", "Tkinter (GUI)"),
+    ]
+    
+    optional_imports = [
+        ("pygame", "Pygame (for desktop audio)"),
+        ("tkinter", "Tkinter (for GUI)"),
     ]
     
     success_count = 0
+    
+    # Test critical imports
     for module, name in critical_imports:
         try:
             __import__(module)
@@ -225,7 +340,21 @@ def test_imports():
         except ImportError as e:
             print(f"❌ {name}: {e}")
     
-    print(f"\n📊 Import test: {success_count}/{len(critical_imports)} successful")
+    # Test optional imports
+    for module, name in optional_imports:
+        try:
+            __import__(module)
+            print(f"✅ {name}")
+        except ImportError as e:
+            print(f"⚠️ {name}: {e}")
+            if module == "tkinter":
+                print("   💡 Install with:")
+                print("      Ubuntu/Debian: sudo apt-get install python3-tk")
+                print("      CentOS/RHEL: sudo yum install tkinter") 
+                print("      macOS/Windows: Should be included with Python")
+                print("   🌐 Alternative: Use web-only mode")
+    
+    print(f"\n📊 Critical imports: {success_count}/{len(critical_imports)} successful")
     return success_count == len(critical_imports)
 
 def print_usage_instructions():
@@ -277,8 +406,8 @@ def main():
         print("\n⚠️ Some core dependencies failed to install")
         print("   The application may not work correctly")
     
-    # Install optional dependencies
-    install_optional_dependencies()
+    # Test and install GUI support
+    gui_available = test_and_install_tkinter()
     
     # Check system requirements
     check_system_requirements()
@@ -290,18 +419,27 @@ def main():
     print()
     if test_imports():
         print("\n🎉 Setup completed successfully!")
-        print_usage_instructions()
         
-        # Test the GUI
-        print("\n🚀 Testing GUI launch...")
-        try:
-            import tkinter as tk
-            root = tk.Tk()
-            root.withdraw()  # Hide the test window
-            root.destroy()
-            print("✅ GUI system working")
-        except Exception as e:
-            print(f"❌ GUI test failed: {e}")
+        if gui_available:
+            print("🖥️ GUI mode available!")
+            print_usage_instructions()
+        else:
+            print("🌐 Web mode available (GUI not supported)")
+            print("\n📖 Usage:")
+            print("   python3 noraemong.py cli")
+        
+        # Test the available interface
+        if gui_available:
+            print("\n🚀 Testing GUI launch...")
+            try:
+                import tkinter as tk
+                root = tk.Tk()
+                root.withdraw()
+                root.destroy()
+                print("✅ GUI system working")
+            except Exception as e:
+                print(f"❌ GUI test failed: {e}")
+                gui_available = False
         
         return True
     else:
@@ -309,6 +447,42 @@ def main():
         print("   Some features may not work correctly")
         print("   Try running the setup again or install missing packages manually")
         return False
+
+def check_system_requirements():
+    """Check system requirements"""
+    print("\n💻 Checking system requirements...")
+    
+    # Check available disk space
+    try:
+        import shutil
+        free_space = shutil.disk_usage(".").free / (1024 * 1024 * 1024)  # GB
+        if free_space >= 2:
+            print(f"✅ Disk space: {free_space:.1f} GB available")
+        else:
+            print(f"⚠️ Low disk space: {free_space:.1f} GB (recommend 2+ GB)")
+    except:
+        print("⚠️ Could not check disk space")
+    
+    # Check memory
+    try:
+        import psutil
+        total_memory = psutil.virtual_memory().total / (1024 * 1024 * 1024)  # GB
+        if total_memory >= 4:
+            print(f"✅ Memory: {total_memory:.1f} GB")
+        else:
+            print(f"⚠️ Limited memory: {total_memory:.1f} GB (recommend 4+ GB)")
+    except:
+        print("ℹ️ Could not check memory (install psutil for memory info)")
+    
+    # Check for audio support
+    print("🔊 Checking audio support...")
+    try:
+        import pygame
+        pygame.mixer.init()
+        pygame.mixer.quit()
+        print("✅ Audio support available (pygame)")
+    except:
+        print("⚠️ Audio support limited (pygame not working)")
 
 def quick_fix():
     """Quick fix for common issues"""

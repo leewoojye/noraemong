@@ -5,14 +5,28 @@ Main interface for creating and playing karaoke tracks with synchronized lyrics.
 
 import sys
 import os
-import tkinter as tk
-from tkinter import ttk, filedialog, messagebox
 from pathlib import Path
 import threading
 import json
 import subprocess
 import time
 from typing import Optional, Dict, Any
+
+# Try to import tkinter with proper error handling
+try:
+    import tkinter as tk
+    from tkinter import ttk, filedialog, messagebox
+    TKINTER_AVAILABLE = True
+except ImportError as e:
+    print("⚠️ tkinter is not available on this system")
+    print(f"Error: {e}")
+    print("\n🔧 To fix this:")
+    print("• Ubuntu/Debian: sudo apt-get install python3-tk")
+    print("• CentOS/RHEL: sudo yum install tkinter")
+    print("• macOS: tkinter should be included with Python")
+    print("• Windows: tkinter should be included with Python")
+    print("\n🌐 Alternative: Use web-only mode")
+    TKINTER_AVAILABLE = False
 
 # Add src directories to path for imports
 current_dir = Path(__file__).parent  # This is src/GUI/
@@ -1465,6 +1479,13 @@ class KaraokePlayer:
 
 def main():
     """Main function to run the karaoke GUI"""
+    # Check if tkinter is available
+    if not TKINTER_AVAILABLE:
+        print("❌ Cannot run GUI: tkinter not available")
+        print("🌐 Switching to web-only mode...")
+        run_web_only_mode()
+        return
+    
     # Check if we're in the right directory structure
     current_dir = Path(__file__).parent  # src/GUI/
     src_dir = current_dir.parent  # src/
@@ -1488,6 +1509,301 @@ def main():
     # Create and run GUI
     app = KaraokeGUI()
     app.run()
+
+def run_web_only_mode():
+    """Run karaoke processing in web-only mode (no GUI)"""
+    print("🌐 Noraemong Karaoke - Web Mode")
+    print("=" * 40)
+    
+    # Get input from command line
+    audio_file = input("🎵 Enter path to audio file: ").strip()
+    if not audio_file or not os.path.exists(audio_file):
+        print("❌ Invalid audio file path")
+        return
+    
+    # Ask for lyrics mode
+    print("\nChoose lyrics mode:")
+    print("1. Auto-generate lyrics (AI transcription)")
+    print("2. Use custom lyrics file")
+    mode = input("Enter choice (1 or 2): ").strip()
+    
+    lyrics_file = None
+    if mode == "2":
+        lyrics_file = input("📝 Enter path to lyrics file: ").strip()
+        if not lyrics_file or not os.path.exists(lyrics_file):
+            print("❌ Invalid lyrics file path")
+            return
+    
+    print("\n🚀 Starting processing...")
+    
+    try:
+        # Import modules
+        current_dir = Path(__file__).parent
+        src_dir = current_dir.parent
+        root_dir = src_dir.parent
+        
+        sys.path.extend([str(src_dir), str(src_dir / "audio"), 
+                        str(src_dir / "lyrics"), str(src_dir / "sync")])
+        
+        from seperate import KaraokeSeparator
+        from transcribe_vocal import AudioTranscriber
+        from sync_lyrics import sync_lyrics_to_audio
+        
+        # Create data directories
+        data_dir = root_dir / "data"
+        data_dir.mkdir(exist_ok=True)
+        (data_dir / "separate").mkdir(exist_ok=True)
+        (data_dir / "transcribe_vocal").mkdir(exist_ok=True)
+        (data_dir / "sync_output").mkdir(exist_ok=True)
+        
+        song_name = Path(audio_file).stem
+        
+        # Step 1: Separate audio
+        print("🔄 Separating vocals and instrumental...")
+        separator = KaraokeSeparator(
+            output_dir=str(data_dir / "separate"),
+            quality="medium",
+            device="auto",
+            enhance_vocals=True
+        )
+        separated_files = separator.process_song(audio_file, song_name)
+        print("✅ Audio separation complete!")
+        
+        # Step 2: Generate or use lyrics
+        if mode == "1":
+            print("🔄 Auto-generating lyrics...")
+            transcriber = AudioTranscriber(model_size="base", device="auto")
+            segments = transcriber.transcribe_with_timestamps(separated_files['vocals'])
+            
+            lyrics_file = data_dir / "transcribe_vocal" / f"{song_name}_lyrics.txt"
+            with open(lyrics_file, 'w', encoding='utf-8') as f:
+                for segment in segments:
+                    f.write(segment.text.strip() + "\n")
+            print(f"📝 Generated lyrics: {lyrics_file}")
+        
+        # Step 3: Sync lyrics
+        print("🔄 Synchronizing lyrics...")
+        sync_output_dir = str(data_dir / "sync_output")
+        sync_files = sync_lyrics_to_audio(
+            audio_path=audio_file,
+            lyrics_path=str(lyrics_file),
+            output_dir=sync_output_dir,
+            model_size="base",
+            device="auto"
+        )
+        print("✅ Lyrics synchronization complete!")
+        
+        # Step 4: Launch web karaoke
+        print("🌐 Launching web karaoke player...")
+        
+        # Create simple web player
+        create_simple_web_karaoke_cli(
+            instrumental_path=separated_files['karaoke'],
+            sync_json_path=sync_files['json'],
+            song_name=song_name
+        )
+        
+    except Exception as e:
+        print(f"❌ Error: {e}")
+        print("Please check that all dependencies are installed:")
+        print("pip install torch torchaudio librosa faster-whisper demucs fuzzywuzzy")
+
+def create_simple_web_karaoke_cli(instrumental_path: str, sync_json_path: str, song_name: str):
+    """Create web karaoke player for CLI mode"""
+    try:
+        import tempfile
+        import webbrowser
+        import shutil
+        
+        # Create temporary directory
+        temp_dir = Path(tempfile.mkdtemp(prefix="noraemong_cli_"))
+        
+        # Copy audio file
+        audio_name = Path(instrumental_path).name
+        shutil.copy2(instrumental_path, temp_dir / audio_name)
+        
+        # Load sync data
+        with open(sync_json_path, 'r', encoding='utf-8') as f:
+            sync_data = json.load(f)
+        
+        # Create HTML (reuse the generate_web_karaoke_html function logic)
+        html_content = generate_cli_karaoke_html(audio_name, sync_data, song_name)
+        
+        html_file = temp_dir / "karaoke.html"
+        with open(html_file, 'w', encoding='utf-8') as f:
+            f.write(html_content)
+        
+        # Open in browser
+        webbrowser.open(f"file://{html_file}")
+        
+        print("✅ Web karaoke player launched!")
+        print(f"📁 Files saved to: {temp_dir}")
+        print("🎤 Enjoy your karaoke session!")
+        
+    except Exception as e:
+        print(f"❌ Failed to create web player: {e}")
+        print("📋 Manual files:")
+        print(f"🎵 Audio: {instrumental_path}")
+        print(f"📜 Lyrics: {sync_json_path}")
+
+def generate_cli_karaoke_html(audio_filename: str, sync_data: dict, song_name: str) -> str:
+    """Generate HTML for CLI web karaoke player"""
+    segments = sync_data.get('segments', [])
+    
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎤 {song_name} - Noraemong Karaoke</title>
+    <style>
+        body {{
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            color: white;
+            min-height: 100vh;
+        }}
+        .container {{
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }}
+        h1 {{
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }}
+        .audio-player {{
+            background: rgba(255,255,255,0.15);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }}
+        audio {{
+            width: 100%;
+            max-width: 800px;
+            height: 60px;
+        }}
+        .lyrics-display {{
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            min-height: 500px;
+            max-height: 600px;
+            overflow-y: auto;
+        }}
+        .lyric-line {{
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 28px;
+            line-height: 1.6;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            opacity: 0.7;
+        }}
+        .lyric-line.current {{
+            background: linear-gradient(45deg, rgba(255,107,107,0.3), rgba(78,205,196,0.3));
+            transform: scale(1.05);
+            border-left: 6px solid #4ecdc4;
+            font-weight: bold;
+            opacity: 1;
+        }}
+        .lyric-line.past {{
+            opacity: 0.5;
+        }}
+        .current-word {{
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-weight: bold;
+        }}
+        .past-word {{
+            color: #bdc3c7;
+            opacity: 0.7;
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎤 {song_name}</h1>
+        <div class="audio-player">
+            <audio id="audioPlayer" controls autoplay>
+                <source src="{audio_filename}" type="audio/mpeg">
+                <source src="{audio_filename}" type="audio/wav">
+            </audio>
+        </div>
+        <div class="lyrics-display" id="lyricsDisplay"></div>
+    </div>
+
+    <script>
+        const segments = {json.dumps(segments, indent=2)};
+        const audioPlayer = document.getElementById('audioPlayer');
+        const lyricsDisplay = document.getElementById('lyricsDisplay');
+        let currentSegment = -1;
+
+        function initLyrics() {{
+            segments.forEach((segment, index) => {{
+                const lyricDiv = document.createElement('div');
+                lyricDiv.className = 'lyric-line';
+                lyricDiv.id = `line-${{index}}`;
+                lyricDiv.textContent = segment.text;
+                lyricDiv.addEventListener('click', () => {{
+                    audioPlayer.currentTime = segment.start_time;
+                }});
+                lyricsDisplay.appendChild(lyricDiv);
+            }});
+        }}
+
+        function updateLyrics() {{
+            const currentTime = audioPlayer.currentTime;
+            let newSegment = -1;
+            
+            for (let i = 0; i < segments.length; i++) {{
+                if (currentTime >= segments[i].start_time && currentTime <= segments[i].end_time) {{
+                    newSegment = i;
+                    break;
+                }}
+            }}
+            
+            if (newSegment !== currentSegment) {{
+                // Remove all highlighting
+                for (let i = 0; i < segments.length; i++) {{
+                    const line = document.getElementById(`line-${{i}}`);
+                    if (line) {{
+                        line.classList.remove('current', 'past');
+                    }}
+                }}
+                
+                // Add past highlighting
+                for (let i = 0; i < newSegment; i++) {{
+                    const line = document.getElementById(`line-${{i}}`);
+                    if (line) line.classList.add('past');
+                }}
+                
+                // Highlight current
+                if (newSegment >= 0) {{
+                    const currentLine = document.getElementById(`line-${{newSegment}}`);
+                    if (currentLine) {{
+                        currentLine.classList.add('current');
+                        currentLine.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
+                    }}
+                }}
+                
+                currentSegment = newSegment;
+            }}
+        }}
+
+        audioPlayer.addEventListener('timeupdate', updateLyrics);
+        audioPlayer.addEventListener('loadedmetadata', initLyrics);
+        
+        if (audioPlayer.readyState >= 2) initLyrics();
+    </script>
+</body>
+</html>"""
 
 if __name__ == "__main__":
     main()
