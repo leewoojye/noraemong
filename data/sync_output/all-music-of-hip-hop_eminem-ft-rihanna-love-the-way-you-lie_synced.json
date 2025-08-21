@@ -1,0 +1,4953 @@
+{
+  "metadata": {
+    "generator": "LyricsSynchronizer",
+    "version": "1.0",
+    "timestamp": "2025-08-21 15:51:26",
+    "total_segments": 93
+  },
+  "segments": [
+    {
+      "start_time": 226.42,
+      "end_time": 230.6,
+      "duration": 4.180000000000007,
+      "text": "Just gonna stand there and watch me burn.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "I'm",
+          "start": 226.42,
+          "end": 226.66,
+          "probability": 0.6213431656360626
+        },
+        {
+          "word": "just",
+          "start": 226.66,
+          "end": 226.76,
+          "probability": 0.9757502675056458
+        },
+        {
+          "word": "gonna",
+          "start": 226.76,
+          "end": 227.28,
+          "probability": 0.9238772988319397
+        },
+        {
+          "word": "stand",
+          "start": 227.28,
+          "end": 227.88,
+          "probability": 0.7526755928993225
+        },
+        {
+          "word": "there",
+          "start": 227.88,
+          "end": 228.68,
+          "probability": 0.9911647439002991
+        },
+        {
+          "word": "and",
+          "start": 228.68,
+          "end": 229.04,
+          "probability": 0.788101077079773
+        },
+        {
+          "word": "watch",
+          "start": 229.04,
+          "end": 229.44,
+          "probability": 0.9900992512702942
+        },
+        {
+          "word": "me",
+          "start": 229.44,
+          "end": 229.86,
+          "probability": 0.9887218475341797
+        },
+        {
+          "word": "burn",
+          "start": 229.86,
+          "end": 230.6,
+          "probability": 0.9958316683769226
+        }
+      ]
+    },
+    {
+      "start_time": 4.22,
+      "end_time": 9.88,
+      "duration": 5.660000000000001,
+      "text": "That's alright because I like the way it hurts.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "Well",
+          "start": 4.22,
+          "end": 5.42,
+          "probability": 0.33053338527679443
+        },
+        {
+          "word": "that's",
+          "start": 5.42,
+          "end": 5.84,
+          "probability": 0.8233415484428406
+        },
+        {
+          "word": "alright,",
+          "start": 5.84,
+          "end": 6.66,
+          "probability": 0.6833207011222839
+        },
+        {
+          "word": "because",
+          "start": 7.16,
+          "end": 7.62,
+          "probability": 0.8137378096580505
+        },
+        {
+          "word": "I",
+          "start": 7.62,
+          "end": 7.94,
+          "probability": 0.963237464427948
+        },
+        {
+          "word": "like",
+          "start": 7.94,
+          "end": 8.3,
+          "probability": 0.8734070062637329
+        },
+        {
+          "word": "the",
+          "start": 8.3,
+          "end": 8.74,
+          "probability": 0.9915803074836731
+        },
+        {
+          "word": "way",
+          "start": 8.74,
+          "end": 9.02,
+          "probability": 0.9241557717323303
+        },
+        {
+          "word": "it",
+          "start": 9.02,
+          "end": 9.4,
+          "probability": 0.9776650071144104
+        },
+        {
+          "word": "hurts",
+          "start": 9.4,
+          "end": 9.88,
+          "probability": 0.9802623987197876
+        }
+      ]
+    },
+    {
+      "start_time": 10.68,
+      "end_time": 15.16,
+      "duration": 4.48,
+      "text": "Just gonna stand there and hear me cry.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "Just",
+          "start": 10.68,
+          "end": 11.4,
+          "probability": 0.8328676223754883
+        },
+        {
+          "word": "gonna",
+          "start": 11.4,
+          "end": 11.9,
+          "probability": 0.9901419281959534
+        },
+        {
+          "word": "stand",
+          "start": 11.9,
+          "end": 12.72,
+          "probability": 0.9949147701263428
+        },
+        {
+          "word": "there",
+          "start": 12.72,
+          "end": 13.36,
+          "probability": 0.9953387975692749
+        },
+        {
+          "word": "and",
+          "start": 13.36,
+          "end": 13.64,
+          "probability": 0.76747727394104
+        },
+        {
+          "word": "hear",
+          "start": 13.64,
+          "end": 14.0,
+          "probability": 0.9498315453529358
+        },
+        {
+          "word": "me",
+          "start": 14.0,
+          "end": 14.54,
+          "probability": 0.9934698343276978
+        },
+        {
+          "word": "cry",
+          "start": 14.54,
+          "end": 15.16,
+          "probability": 0.17711412906646729
+        }
+      ]
+    },
+    {
+      "start_time": 15.92,
+      "end_time": 20.8,
+      "duration": 4.880000000000001,
+      "text": "That's alright because I love the way you lie.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "Well",
+          "start": 15.92,
+          "end": 16.54,
+          "probability": 0.7794907093048096
+        },
+        {
+          "word": "that's",
+          "start": 16.54,
+          "end": 16.96,
+          "probability": 0.9790000021457672
+        },
+        {
+          "word": "alright,",
+          "start": 16.96,
+          "end": 17.86,
+          "probability": 0.9855426549911499
+        },
+        {
+          "word": "because",
+          "start": 18.22,
+          "end": 18.58,
+          "probability": 0.9817487597465515
+        },
+        {
+          "word": "I",
+          "start": 18.58,
+          "end": 19.1,
+          "probability": 0.9976866245269775
+        },
+        {
+          "word": "love",
+          "start": 19.1,
+          "end": 19.42,
+          "probability": 0.8721776604652405
+        },
+        {
+          "word": "the",
+          "start": 19.42,
+          "end": 19.78,
+          "probability": 0.9927085041999817
+        },
+        {
+          "word": "way",
+          "start": 19.78,
+          "end": 20.12,
+          "probability": 0.9927636981010437
+        },
+        {
+          "word": "you",
+          "start": 20.12,
+          "end": 20.6,
+          "probability": 0.48589983582496643
+        },
+        {
+          "word": "lie",
+          "start": 20.6,
+          "end": 20.8,
+          "probability": 0.9257820248603821
+        }
+      ]
+    },
+    {
+      "start_time": 21.52,
+      "end_time": 23.58,
+      "duration": 2.0599999999999987,
+      "text": "I love the way you lie.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "I",
+          "start": 21.52,
+          "end": 22.04,
+          "probability": 0.8610221147537231
+        },
+        {
+          "word": "love",
+          "start": 22.04,
+          "end": 22.32,
+          "probability": 0.9775807857513428
+        },
+        {
+          "word": "the",
+          "start": 22.32,
+          "end": 22.62,
+          "probability": 0.998185932636261
+        },
+        {
+          "word": "way",
+          "start": 22.62,
+          "end": 23.0,
+          "probability": 0.9987133741378784
+        },
+        {
+          "word": "you",
+          "start": 23.0,
+          "end": 23.3,
+          "probability": 0.9959725737571716
+        },
+        {
+          "word": "lie",
+          "start": 23.3,
+          "end": 23.58,
+          "probability": 0.9987977743148804
+        }
+      ]
+    },
+    {
+      "start_time": 24.42,
+      "end_time": 26.84,
+      "duration": 2.419999999999998,
+      "text": "I can't tell you what it really is.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "I",
+          "start": 24.42,
+          "end": 25.18,
+          "probability": 0.8901529312133789
+        },
+        {
+          "word": "can't",
+          "start": 25.18,
+          "end": 25.6,
+          "probability": 0.9771688878536224
+        },
+        {
+          "word": "tell",
+          "start": 25.6,
+          "end": 25.7,
+          "probability": 0.9988883137702942
+        },
+        {
+          "word": "you",
+          "start": 25.7,
+          "end": 25.86,
+          "probability": 0.993074893951416
+        },
+        {
+          "word": "what",
+          "start": 25.86,
+          "end": 26.08,
+          "probability": 0.9960771203041077
+        },
+        {
+          "word": "it",
+          "start": 26.08,
+          "end": 26.2,
+          "probability": 0.9828845262527466
+        },
+        {
+          "word": "really",
+          "start": 26.2,
+          "end": 26.44,
+          "probability": 0.9926857948303223
+        },
+        {
+          "word": "is",
+          "start": 26.44,
+          "end": 26.84,
+          "probability": 0.9989640712738037
+        }
+      ]
+    },
+    {
+      "start_time": 26.84,
+      "end_time": 28.96,
+      "duration": 2.120000000000001,
+      "text": "I can only tell you what it feels like.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "I",
+          "start": 26.84,
+          "end": 27.08,
+          "probability": 0.8353648781776428
+        },
+        {
+          "word": "can",
+          "start": 27.08,
+          "end": 27.3,
+          "probability": 0.9944862723350525
+        },
+        {
+          "word": "only",
+          "start": 27.3,
+          "end": 27.48,
+          "probability": 0.995468258857727
+        },
+        {
+          "word": "tell",
+          "start": 27.48,
+          "end": 27.76,
+          "probability": 0.9990611672401428
+        },
+        {
+          "word": "you",
+          "start": 27.76,
+          "end": 27.94,
+          "probability": 0.9974098801612854
+        },
+        {
+          "word": "what",
+          "start": 27.94,
+          "end": 28.12,
+          "probability": 0.9963405132293701
+        },
+        {
+          "word": "it",
+          "start": 28.12,
+          "end": 28.28,
+          "probability": 0.9992152452468872
+        },
+        {
+          "word": "feels",
+          "start": 28.28,
+          "end": 28.54,
+          "probability": 0.9944512248039246
+        },
+        {
+          "word": "like",
+          "start": 28.54,
+          "end": 28.96,
+          "probability": 0.9910987019538879
+        }
+      ]
+    },
+    {
+      "start_time": 28.96,
+      "end_time": 31.58,
+      "duration": 2.6199999999999974,
+      "text": "And right now there's a steel knife in my windpipe.",
+      "confidence": 0.85,
+      "word_timings": [
+        {
+          "word": "And",
+          "start": 28.96,
+          "end": 29.18,
+          "probability": 0.17368687689304352
+        },
+        {
+          "word": "right",
+          "start": 29.18,
+          "end": 29.4,
+          "probability": 0.8758394122123718
+        },
+        {
+          "word": "now",
+          "start": 29.4,
+          "end": 29.72,
+          "probability": 0.9967029690742493
+        },
+        {
+          "word": "it's",
+          "start": 29.72,
+          "end": 29.94,
+          "probability": 0.5893710851669312
+        },
+        {
+          "word": "a",
+          "start": 29.94,
+          "end": 30.0,
+          "probability": 0.7495539784431458
+        },
+        {
+          "word": "still",
+          "start": 30.0,
+          "end": 30.28,
+          "probability": 0.7259873747825623
+        },
+        {
+          "word": "night,",
+          "start": 30.28,
+          "end": 30.6,
+          "probability": 0.8521972894668579
+        },
+        {
+          "word": "in",
+          "start": 30.7,
+          "end": 30.9,
+          "probability": 0.6028738021850586
+        },
+        {
+          "word": "my",
+          "start": 30.9,
+          "end": 31.06,
+          "probability": 0.9971730709075928
+        },
+        {
+          "word": "windpipe",
+          "start": 31.06,
+          "end": 31.58,
+          "probability": 0.780849814414978
+        }
+      ]
+    },
+    {
+      "start_time": 31.58,
+      "end_time": 33.38,
+      "duration": 1.8000000000000043,
+      "text": "I can't breathe but I still fight while I can fight.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "I",
+          "start": 31.58,
+          "end": 31.92,
+          "probability": 0.7457491755485535
+        },
+        {
+          "word": "can't",
+          "start": 31.92,
+          "end": 32.3,
+          "probability": 0.9753827154636383
+        },
+        {
+          "word": "breathe,",
+          "start": 32.3,
+          "end": 32.5,
+          "probability": 0.8262521028518677
+        },
+        {
+          "word": "but",
+          "start": 32.74,
+          "end": 32.76,
+          "probability": 0.4327183961868286
+        },
+        {
+          "word": "I",
+          "start": 32.76,
+          "end": 32.92,
+          "probability": 0.8658345937728882
+        },
+        {
+          "word": "still",
+          "start": 32.92,
+          "end": 33.06,
+          "probability": 0.9619324803352356
+        },
+        {
+          "word": "fight",
+          "start": 33.06,
+          "end": 33.38,
+          "probability": 0.988017201423645
+        }
+      ]
+    },
+    {
+      "start_time": 33.38,
+      "end_time": 36.08,
+      "duration": 2.6999999999999957,
+      "text": "As long as the wall feels right it's like I'm in flight.",
+      "confidence": 0.73,
+      "word_timings": [
+        {
+          "word": "While",
+          "start": 33.38,
+          "end": 33.68,
+          "probability": 0.5002691149711609
+        },
+        {
+          "word": "I",
+          "start": 33.68,
+          "end": 33.8,
+          "probability": 0.9913425445556641
+        },
+        {
+          "word": "can",
+          "start": 33.8,
+          "end": 34.02,
+          "probability": 0.9923810362815857
+        },
+        {
+          "word": "fight,",
+          "start": 34.02,
+          "end": 34.46,
+          "probability": 0.8533068299293518
+        },
+        {
+          "word": "as",
+          "start": 34.5,
+          "end": 34.72,
+          "probability": 0.8108016848564148
+        },
+        {
+          "word": "long",
+          "start": 34.72,
+          "end": 34.88,
+          "probability": 0.9990806579589844
+        },
+        {
+          "word": "as",
+          "start": 34.88,
+          "end": 35.08,
+          "probability": 0.9957746863365173
+        },
+        {
+          "word": "the",
+          "start": 35.08,
+          "end": 35.2,
+          "probability": 0.9830144643783569
+        },
+        {
+          "word": "road",
+          "start": 35.2,
+          "end": 35.42,
+          "probability": 0.30633679032325745
+        },
+        {
+          "word": "feels",
+          "start": 35.42,
+          "end": 35.74,
+          "probability": 0.9272736310958862
+        },
+        {
+          "word": "right",
+          "start": 35.74,
+          "end": 36.08,
+          "probability": 0.9503396153450012
+        }
+      ]
+    },
+    {
+      "start_time": 36.58,
+      "end_time": 39.58,
+      "duration": 3.0,
+      "text": "High off a log, choke on my hate.",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 40.26,
+      "end_time": 41.7,
+      "duration": 1.4400000000000048,
+      "text": "It's like I'm huffing pain and I love it the more I suffer.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "I",
+          "start": 40.26,
+          "end": 40.54,
+          "probability": 0.2190922647714615
+        },
+        {
+          "word": "love",
+          "start": 40.54,
+          "end": 40.78,
+          "probability": 0.9589043855667114
+        },
+        {
+          "word": "it",
+          "start": 40.78,
+          "end": 40.88,
+          "probability": 0.8947844505310059
+        },
+        {
+          "word": "the",
+          "start": 40.88,
+          "end": 41.06,
+          "probability": 0.8267499208450317
+        },
+        {
+          "word": "more",
+          "start": 41.06,
+          "end": 41.24,
+          "probability": 0.9838091135025024
+        },
+        {
+          "word": "I",
+          "start": 41.24,
+          "end": 41.5,
+          "probability": 0.853581428527832
+        },
+        {
+          "word": "suffer",
+          "start": 41.5,
+          "end": 41.7,
+          "probability": 0.9704875349998474
+        }
+      ]
+    },
+    {
+      "start_time": 41.7,
+      "end_time": 44.4,
+      "duration": 2.6999999999999957,
+      "text": "I suffocate and break a form about to drown.",
+      "confidence": 0.76,
+      "word_timings": [
+        {
+          "word": "I",
+          "start": 41.7,
+          "end": 42.1,
+          "probability": 0.465733140707016
+        },
+        {
+          "word": "suffer",
+          "start": 42.1,
+          "end": 42.36,
+          "probability": 0.49309006333351135
+        },
+        {
+          "word": "Kate,",
+          "start": 42.36,
+          "end": 42.7,
+          "probability": 0.10389997810125351
+        },
+        {
+          "word": "and",
+          "start": 42.84,
+          "end": 42.94,
+          "probability": 0.296112596988678
+        },
+        {
+          "word": "right",
+          "start": 42.94,
+          "end": 43.12,
+          "probability": 0.5986746549606323
+        },
+        {
+          "word": "before",
+          "start": 43.12,
+          "end": 43.46,
+          "probability": 0.9948334693908691
+        },
+        {
+          "word": "I'm",
+          "start": 43.46,
+          "end": 43.8,
+          "probability": 0.9341236650943756
+        },
+        {
+          "word": "about",
+          "start": 43.8,
+          "end": 43.98,
+          "probability": 0.8611897230148315
+        },
+        {
+          "word": "to",
+          "start": 43.98,
+          "end": 44.16,
+          "probability": 0.9660645723342896
+        },
+        {
+          "word": "drown",
+          "start": 44.16,
+          "end": 44.4,
+          "probability": 0.98896723985672
+        }
+      ]
+    },
+    {
+      "start_time": 44.4,
+      "end_time": 47.2,
+      "duration": 2.8000000000000043,
+      "text": "She resuscitates me, she fucking hates me.",
+      "confidence": 0.91,
+      "word_timings": [
+        {
+          "word": "She",
+          "start": 44.4,
+          "end": 44.7,
+          "probability": 0.9303288459777832
+        },
+        {
+          "word": "resupportates",
+          "start": 44.7,
+          "end": 45.46,
+          "probability": 0.509571734815836
+        },
+        {
+          "word": "me,",
+          "start": 45.46,
+          "end": 45.9,
+          "probability": 0.9554422497749329
+        },
+        {
+          "word": "she",
+          "start": 46.0,
+          "end": 46.2,
+          "probability": 0.9824132919311523
+        },
+        {
+          "word": "fucking",
+          "start": 46.2,
+          "end": 46.54,
+          "probability": 0.7907805442810059
+        },
+        {
+          "word": "hates",
+          "start": 46.54,
+          "end": 46.8,
+          "probability": 0.9870420694351196
+        },
+        {
+          "word": "me",
+          "start": 46.8,
+          "end": 47.2,
+          "probability": 0.9990672469139099
+        }
+      ]
+    },
+    {
+      "start_time": 47.2,
+      "end_time": 49.06,
+      "duration": 1.8599999999999994,
+      "text": "And I love it, wait, where you going?",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "And",
+          "start": 47.2,
+          "end": 47.48,
+          "probability": 0.5786833167076111
+        },
+        {
+          "word": "I",
+          "start": 47.48,
+          "end": 47.6,
+          "probability": 0.9936602711677551
+        },
+        {
+          "word": "love",
+          "start": 47.6,
+          "end": 47.8,
+          "probability": 0.9572234153747559
+        },
+        {
+          "word": "it,",
+          "start": 47.8,
+          "end": 47.96,
+          "probability": 0.9949948787689209
+        },
+        {
+          "word": "wait,",
+          "start": 47.96,
+          "end": 48.22,
+          "probability": 0.8981779217720032
+        },
+        {
+          "word": "where",
+          "start": 48.42,
+          "end": 48.64,
+          "probability": 0.7133808135986328
+        },
+        {
+          "word": "you",
+          "start": 48.64,
+          "end": 48.78,
+          "probability": 0.758538007736206
+        },
+        {
+          "word": "going?",
+          "start": 48.78,
+          "end": 49.06,
+          "probability": 0.6031229496002197
+        }
+      ]
+    },
+    {
+      "start_time": 49.3,
+      "end_time": 51.5,
+      "duration": 2.200000000000003,
+      "text": "I'm leaving you.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "I'm",
+          "start": 49.3,
+          "end": 49.44,
+          "probability": 0.9230434894561768
+        },
+        {
+          "word": "leaving",
+          "start": 49.44,
+          "end": 49.62,
+          "probability": 0.9706088304519653
+        },
+        {
+          "word": "you,",
+          "start": 49.62,
+          "end": 50.0,
+          "probability": 0.9819428324699402
+        },
+        {
+          "word": "no",
+          "start": 50.32,
+          "end": 50.56,
+          "probability": 0.121498703956604
+        },
+        {
+          "word": "you",
+          "start": 50.56,
+          "end": 50.74,
+          "probability": 0.46344026923179626
+        },
+        {
+          "word": "ain't",
+          "start": 50.74,
+          "end": 50.98,
+          "probability": 0.9844645857810974
+        },
+        {
+          "word": "come",
+          "start": 50.98,
+          "end": 51.18,
+          "probability": 0.5005459785461426
+        },
+        {
+          "word": "back",
+          "start": 51.18,
+          "end": 51.5,
+          "probability": 0.9984942674636841
+        }
+      ]
+    },
+    {
+      "start_time": 190.68,
+      "end_time": 193.02,
+      "duration": 2.3400000000000034,
+      "text": "No you ain't, come back.",
+      "confidence": 0.63,
+      "word_timings": [
+        {
+          "word": "Baby,",
+          "start": 190.68,
+          "end": 191.34,
+          "probability": 0.9030827879905701
+        },
+        {
+          "word": "please",
+          "start": 191.48,
+          "end": 191.76,
+          "probability": 0.9970341920852661
+        },
+        {
+          "word": "come",
+          "start": 191.76,
+          "end": 191.92,
+          "probability": 0.7644837498664856
+        },
+        {
+          "word": "back,",
+          "start": 191.92,
+          "end": 192.26,
+          "probability": 0.9891998767852783
+        },
+        {
+          "word": "it",
+          "start": 192.34,
+          "end": 192.46,
+          "probability": 0.9454030990600586
+        },
+        {
+          "word": "wasn't",
+          "start": 192.46,
+          "end": 192.82,
+          "probability": 0.9939718246459961
+        },
+        {
+          "word": "you",
+          "start": 192.82,
+          "end": 193.02,
+          "probability": 0.980233371257782
+        }
+      ]
+    },
+    {
+      "start_time": 51.5,
+      "end_time": 53.68,
+      "duration": 2.1799999999999997,
+      "text": "We're running right back.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "We're",
+          "start": 51.5,
+          "end": 51.8,
+          "probability": 0.8707898259162903
+        },
+        {
+          "word": "running",
+          "start": 51.8,
+          "end": 52.02,
+          "probability": 0.9874879121780396
+        },
+        {
+          "word": "right",
+          "start": 52.02,
+          "end": 52.28,
+          "probability": 0.9793157577514648
+        },
+        {
+          "word": "back,",
+          "start": 52.28,
+          "end": 52.72,
+          "probability": 0.9975277781486511
+        },
+        {
+          "word": "here",
+          "start": 52.84,
+          "end": 53.0,
+          "probability": 0.9801257252693176
+        },
+        {
+          "word": "we",
+          "start": 53.0,
+          "end": 53.12,
+          "probability": 0.9940316081047058
+        },
+        {
+          "word": "go",
+          "start": 53.12,
+          "end": 53.34,
+          "probability": 0.9156922101974487
+        },
+        {
+          "word": "again",
+          "start": 53.34,
+          "end": 53.68,
+          "probability": 0.9700802564620972
+        }
+      ]
+    },
+    {
+      "start_time": 53.68,
+      "end_time": 55.72,
+      "duration": 2.039999999999999,
+      "text": "Here we go again, it's so insane.",
+      "confidence": 0.64,
+      "word_timings": [
+        {
+          "word": "It's",
+          "start": 53.68,
+          "end": 54.08,
+          "probability": 0.7105988264083862
+        },
+        {
+          "word": "all",
+          "start": 54.08,
+          "end": 54.16,
+          "probability": 0.5123578906059265
+        },
+        {
+          "word": "insane,",
+          "start": 54.16,
+          "end": 54.48,
+          "probability": 0.8256723284721375
+        },
+        {
+          "word": "because",
+          "start": 54.48,
+          "end": 54.88,
+          "probability": 0.06393986940383911
+        },
+        {
+          "word": "when",
+          "start": 54.88,
+          "end": 55.06,
+          "probability": 0.8605155944824219
+        },
+        {
+          "word": "it's",
+          "start": 55.06,
+          "end": 55.24,
+          "probability": 0.9800763726234436
+        },
+        {
+          "word": "going",
+          "start": 55.24,
+          "end": 55.4,
+          "probability": 0.9147084355354309
+        },
+        {
+          "word": "good",
+          "start": 55.4,
+          "end": 55.72,
+          "probability": 0.9361315369606018
+        }
+      ]
+    },
+    {
+      "start_time": 56.22,
+      "end_time": 59.22,
+      "duration": 3.0,
+      "text": "Cause when it's going good it's going great.",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 55.72,
+      "end_time": 58.36,
+      "duration": 2.6400000000000006,
+      "text": "I'm Superman with the wind in his back.",
+      "confidence": 0.87,
+      "word_timings": [
+        {
+          "word": "It's",
+          "start": 55.72,
+          "end": 55.9,
+          "probability": 0.5590441972017288
+        },
+        {
+          "word": "going",
+          "start": 55.9,
+          "end": 56.1,
+          "probability": 0.9535281658172607
+        },
+        {
+          "word": "great,",
+          "start": 56.1,
+          "end": 56.44,
+          "probability": 0.9982353448867798
+        },
+        {
+          "word": "I'm",
+          "start": 56.66,
+          "end": 56.8,
+          "probability": 0.9950757026672363
+        },
+        {
+          "word": "Superman,",
+          "start": 56.8,
+          "end": 57.26,
+          "probability": 0.7934528589248657
+        },
+        {
+          "word": "but",
+          "start": 57.54,
+          "end": 57.54,
+          "probability": 0.6459911465644836
+        },
+        {
+          "word": "the",
+          "start": 57.54,
+          "end": 57.64,
+          "probability": 0.985444962978363
+        },
+        {
+          "word": "wind",
+          "start": 57.64,
+          "end": 57.86,
+          "probability": 0.9626576900482178
+        },
+        {
+          "word": "is",
+          "start": 57.86,
+          "end": 58.02,
+          "probability": 0.4738861322402954
+        },
+        {
+          "word": "back",
+          "start": 58.02,
+          "end": 58.36,
+          "probability": 0.9153718948364258
+        }
+      ]
+    },
+    {
+      "start_time": 58.36,
+      "end_time": 60.84,
+      "duration": 2.480000000000004,
+      "text": "She's slow and slain for when it's bad, it's awful.",
+      "confidence": 0.94,
+      "word_timings": [
+        {
+          "word": "She's",
+          "start": 58.36,
+          "end": 58.76,
+          "probability": 0.5673909783363342
+        },
+        {
+          "word": "slow",
+          "start": 58.76,
+          "end": 58.86,
+          "probability": 0.1430160403251648
+        },
+        {
+          "word": "and",
+          "start": 58.86,
+          "end": 59.04,
+          "probability": 0.48423442244529724
+        },
+        {
+          "word": "slain,",
+          "start": 59.04,
+          "end": 59.32,
+          "probability": 0.793207198381424
+        },
+        {
+          "word": "but",
+          "start": 59.46,
+          "end": 59.5,
+          "probability": 0.8971704244613647
+        },
+        {
+          "word": "when",
+          "start": 59.5,
+          "end": 59.7,
+          "probability": 0.6276087760925293
+        },
+        {
+          "word": "it's",
+          "start": 59.7,
+          "end": 59.96,
+          "probability": 0.9475741982460022
+        },
+        {
+          "word": "bad",
+          "start": 59.96,
+          "end": 60.12,
+          "probability": 0.989887535572052
+        },
+        {
+          "word": "it's",
+          "start": 60.12,
+          "end": 60.48,
+          "probability": 0.78238844871521
+        },
+        {
+          "word": "awful",
+          "start": 60.48,
+          "end": 60.84,
+          "probability": 0.9326145648956299
+        }
+      ]
+    },
+    {
+      "start_time": 60.84,
+      "end_time": 63.3,
+      "duration": 2.4599999999999937,
+      "text": "I feel so ashamed, I snap, who's next to me?",
+      "confidence": 0.89,
+      "word_timings": [
+        {
+          "word": "I",
+          "start": 60.84,
+          "end": 61.24,
+          "probability": 0.6355718970298767
+        },
+        {
+          "word": "feel",
+          "start": 61.24,
+          "end": 61.38,
+          "probability": 0.8849340081214905
+        },
+        {
+          "word": "so",
+          "start": 61.38,
+          "end": 61.62,
+          "probability": 0.9773321747779846
+        },
+        {
+          "word": "ashamed,",
+          "start": 61.62,
+          "end": 61.96,
+          "probability": 0.9990129470825195
+        },
+        {
+          "word": "I",
+          "start": 62.22,
+          "end": 62.54,
+          "probability": 0.5665328502655029
+        },
+        {
+          "word": "snap,",
+          "start": 62.54,
+          "end": 62.62,
+          "probability": 0.692624032497406
+        },
+        {
+          "word": "who's",
+          "start": 62.72,
+          "end": 62.94,
+          "probability": 0.8841544389724731
+        },
+        {
+          "word": "I",
+          "start": 62.94,
+          "end": 63.02,
+          "probability": 0.47444984316825867
+        },
+        {
+          "word": "do?",
+          "start": 63.02,
+          "end": 63.3,
+          "probability": 0.3366073668003082
+        }
+      ]
+    },
+    {
+      "start_time": 63.56,
+      "end_time": 66.08,
+      "duration": 2.519999999999996,
+      "text": "I don't even know his name, I laid hands on him.",
+      "confidence": 0.96,
+      "word_timings": [
+        {
+          "word": "I",
+          "start": 63.56,
+          "end": 63.72,
+          "probability": 0.9905474781990051
+        },
+        {
+          "word": "don't",
+          "start": 63.72,
+          "end": 63.84,
+          "probability": 0.9974012970924377
+        },
+        {
+          "word": "even",
+          "start": 63.84,
+          "end": 64.04,
+          "probability": 0.9980908036231995
+        },
+        {
+          "word": "know",
+          "start": 64.04,
+          "end": 64.36,
+          "probability": 0.9963648915290833
+        },
+        {
+          "word": "his",
+          "start": 64.36,
+          "end": 64.54,
+          "probability": 0.8200107216835022
+        },
+        {
+          "word": "name,",
+          "start": 64.54,
+          "end": 64.8,
+          "probability": 0.9988227486610413
+        },
+        {
+          "word": "I",
+          "start": 65.0,
+          "end": 65.04,
+          "probability": 0.6370067596435547
+        },
+        {
+          "word": "laid",
+          "start": 65.04,
+          "end": 65.22,
+          "probability": 0.4008564352989197
+        },
+        {
+          "word": "hands",
+          "start": 65.22,
+          "end": 65.68,
+          "probability": 0.9802082180976868
+        },
+        {
+          "word": "on",
+          "start": 65.68,
+          "end": 65.96,
+          "probability": 0.9823392033576965
+        },
+        {
+          "word": "her",
+          "start": 65.96,
+          "end": 66.08,
+          "probability": 0.2906295955181122
+        }
+      ]
+    },
+    {
+      "start_time": 66.08,
+      "end_time": 69.28,
+      "duration": 3.200000000000003,
+      "text": "I never stooped so long again, I guess I don't know my own strength.",
+      "confidence": 0.91,
+      "word_timings": [
+        {
+          "word": "I",
+          "start": 66.08,
+          "end": 66.26,
+          "probability": 0.26402491331100464
+        },
+        {
+          "word": "never",
+          "start": 66.26,
+          "end": 66.5,
+          "probability": 0.9939132332801819
+        },
+        {
+          "word": "stoop",
+          "start": 66.5,
+          "end": 66.76,
+          "probability": 0.7001596987247467
+        },
+        {
+          "word": "so",
+          "start": 66.76,
+          "end": 66.94,
+          "probability": 0.7032793760299683
+        },
+        {
+          "word": "low",
+          "start": 66.94,
+          "end": 67.1,
+          "probability": 0.9766272306442261
+        },
+        {
+          "word": "again,",
+          "start": 67.1,
+          "end": 67.54,
+          "probability": 0.9439369440078735
+        },
+        {
+          "word": "I",
+          "start": 67.68,
+          "end": 67.8,
+          "probability": 0.987558901309967
+        },
+        {
+          "word": "guess",
+          "start": 67.8,
+          "end": 67.96,
+          "probability": 0.9988540410995483
+        },
+        {
+          "word": "I",
+          "start": 67.96,
+          "end": 68.16,
+          "probability": 0.9762206077575684
+        },
+        {
+          "word": "don't",
+          "start": 68.16,
+          "end": 68.38,
+          "probability": 0.9850748479366302
+        },
+        {
+          "word": "know",
+          "start": 68.38,
+          "end": 68.52,
+          "probability": 0.6249715685844421
+        },
+        {
+          "word": "most",
+          "start": 68.52,
+          "end": 68.98,
+          "probability": 0.3223010003566742
+        },
+        {
+          "word": "strength",
+          "start": 68.98,
+          "end": 69.28,
+          "probability": 0.20048284530639648
+        }
+      ]
+    },
+    {
+      "start_time": 0.0,
+      "end_time": 4.22,
+      "duration": 4.22,
+      "text": "Just gonna stand there and watch me burn.",
+      "confidence": 0.95,
+      "word_timings": [
+        {
+          "word": "Just",
+          "start": 0.0,
+          "end": 0.34,
+          "probability": 0.1663815826177597
+        },
+        {
+          "word": "gonna",
+          "start": 0.34,
+          "end": 0.82,
+          "probability": 0.896289587020874
+        },
+        {
+          "word": "stand",
+          "start": 0.82,
+          "end": 1.36,
+          "probability": 0.9599534273147583
+        },
+        {
+          "word": "there,",
+          "start": 1.36,
+          "end": 2.2,
+          "probability": 0.9947291016578674
+        },
+        {
+          "word": "watch",
+          "start": 2.2,
+          "end": 3.02,
+          "probability": 0.972225546836853
+        },
+        {
+          "word": "me",
+          "start": 3.02,
+          "end": 3.42,
+          "probability": 0.9928027987480164
+        },
+        {
+          "word": "burn",
+          "start": 3.42,
+          "end": 4.22,
+          "probability": 0.7840880155563354
+        }
+      ]
+    },
+    {
+      "start_time": 230.6,
+      "end_time": 236.44,
+      "duration": 5.840000000000003,
+      "text": "But that's alright because I like the way it hurts.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "But",
+          "start": 230.6,
+          "end": 231.76,
+          "probability": 0.271271288394928
+        },
+        {
+          "word": "that's",
+          "start": 231.76,
+          "end": 232.2,
+          "probability": 0.6608928889036179
+        },
+        {
+          "word": "alright",
+          "start": 232.2,
+          "end": 232.98,
+          "probability": 0.6032004356384277
+        },
+        {
+          "word": "because",
+          "start": 232.98,
+          "end": 233.86,
+          "probability": 0.6454324126243591
+        },
+        {
+          "word": "I",
+          "start": 233.86,
+          "end": 234.32,
+          "probability": 0.9786465764045715
+        },
+        {
+          "word": "like",
+          "start": 234.32,
+          "end": 234.72,
+          "probability": 0.9692802429199219
+        },
+        {
+          "word": "the",
+          "start": 234.72,
+          "end": 235.08,
+          "probability": 0.9660038352012634
+        },
+        {
+          "word": "way",
+          "start": 235.08,
+          "end": 235.36,
+          "probability": 0.8596372008323669
+        },
+        {
+          "word": "it",
+          "start": 235.36,
+          "end": 235.76,
+          "probability": 0.9781976342201233
+        },
+        {
+          "word": "hurts",
+          "start": 235.76,
+          "end": 236.44,
+          "probability": 0.9965594410896301
+        }
+      ]
+    },
+    {
+      "start_time": 79.97999999999999,
+      "end_time": 84.2,
+      "duration": 4.220000000000013,
+      "text": "Just gonna stand there and hear me cry.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "Just",
+          "start": 79.97999999999999,
+          "end": 80.53999999999999,
+          "probability": 0.623765230178833
+        },
+        {
+          "word": "gonna",
+          "start": 80.53999999999999,
+          "end": 81.1,
+          "probability": 0.9935036301612854
+        },
+        {
+          "word": "stand",
+          "start": 81.1,
+          "end": 81.86,
+          "probability": 0.9961475133895874
+        },
+        {
+          "word": "there",
+          "start": 81.86,
+          "end": 82.5,
+          "probability": 0.957148551940918
+        },
+        {
+          "word": "and",
+          "start": 82.5,
+          "end": 82.82,
+          "probability": 0.7764648795127869
+        },
+        {
+          "word": "hear",
+          "start": 82.82,
+          "end": 83.08,
+          "probability": 0.8311533331871033
+        },
+        {
+          "word": "me",
+          "start": 83.08,
+          "end": 83.52,
+          "probability": 0.9627074599266052
+        },
+        {
+          "word": "cry",
+          "start": 83.52,
+          "end": 84.2,
+          "probability": 0.9626315236091614
+        }
+      ]
+    },
+    {
+      "start_time": 151.14,
+      "end_time": 156.18,
+      "duration": 5.0400000000000205,
+      "text": "But that's alright because I like the way it hurts.",
+      "confidence": 0.96,
+      "word_timings": [
+        {
+          "word": "But",
+          "start": 151.14,
+          "end": 151.78,
+          "probability": 0.16193866729736328
+        },
+        {
+          "word": "that's",
+          "start": 151.78,
+          "end": 152.2,
+          "probability": 0.9076170921325684
+        },
+        {
+          "word": "alright,",
+          "start": 152.2,
+          "end": 153.06,
+          "probability": 0.7188553810119629
+        },
+        {
+          "word": "because",
+          "start": 153.5,
+          "end": 153.86,
+          "probability": 0.8817909955978394
+        },
+        {
+          "word": "I",
+          "start": 153.86,
+          "end": 154.32,
+          "probability": 0.965586245059967
+        },
+        {
+          "word": "like",
+          "start": 154.32,
+          "end": 154.72,
+          "probability": 0.8023858666419983
+        },
+        {
+          "word": "the",
+          "start": 154.72,
+          "end": 155.06,
+          "probability": 0.9764395952224731
+        },
+        {
+          "word": "way",
+          "start": 155.06,
+          "end": 155.32,
+          "probability": 0.9240989685058594
+        },
+        {
+          "word": "he",
+          "start": 155.32,
+          "end": 155.76,
+          "probability": 0.0980607122182846
+        },
+        {
+          "word": "hurts",
+          "start": 155.76,
+          "end": 156.18,
+          "probability": 0.9023510217666626
+        }
+      ]
+    },
+    {
+      "start_time": 90.48,
+      "end_time": 92.68,
+      "duration": 2.200000000000003,
+      "text": "I love the way you lie.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "I",
+          "start": 90.48,
+          "end": 91.04,
+          "probability": 0.7100785970687866
+        },
+        {
+          "word": "love",
+          "start": 91.04,
+          "end": 91.36,
+          "probability": 0.9416022300720215
+        },
+        {
+          "word": "the",
+          "start": 91.36,
+          "end": 91.72,
+          "probability": 0.9942112565040588
+        },
+        {
+          "word": "way",
+          "start": 91.72,
+          "end": 91.96,
+          "probability": 0.9983160495758057
+        },
+        {
+          "word": "you",
+          "start": 91.96,
+          "end": 92.3,
+          "probability": 0.988895058631897
+        },
+        {
+          "word": "lie",
+          "start": 92.3,
+          "end": 92.68,
+          "probability": 0.998143196105957
+        }
+      ]
+    },
+    {
+      "start_time": 95.75999999999999,
+      "end_time": 98.24,
+      "duration": 2.480000000000004,
+      "text": "I love the way you lie.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "I",
+          "start": 95.75999999999999,
+          "end": 96.32,
+          "probability": 0.5675526261329651
+        },
+        {
+          "word": "love",
+          "start": 96.32,
+          "end": 96.88,
+          "probability": 0.9844545125961304
+        },
+        {
+          "word": "the",
+          "start": 96.88,
+          "end": 97.2,
+          "probability": 0.9973853230476379
+        },
+        {
+          "word": "way",
+          "start": 97.2,
+          "end": 97.5,
+          "probability": 0.9992510676383972
+        },
+        {
+          "word": "you",
+          "start": 97.5,
+          "end": 97.9,
+          "probability": 0.9939084053039551
+        },
+        {
+          "word": "lie",
+          "start": 97.9,
+          "end": 98.24,
+          "probability": 0.9995450377464294
+        }
+      ]
+    },
+    {
+      "start_time": 85.0,
+      "end_time": 89.88,
+      "duration": 4.8799999999999955,
+      "text": "I love the way you lie.",
+      "confidence": 0.91,
+      "word_timings": [
+        {
+          "word": "Well",
+          "start": 85.0,
+          "end": 85.56,
+          "probability": 0.0052310749888420105
+        },
+        {
+          "word": "that's",
+          "start": 85.56,
+          "end": 85.98,
+          "probability": 0.6836251765489578
+        },
+        {
+          "word": "alright,",
+          "start": 85.98,
+          "end": 86.86,
+          "probability": 0.8433961868286133
+        },
+        {
+          "word": "because",
+          "start": 87.26,
+          "end": 87.62,
+          "probability": 0.430757075548172
+        },
+        {
+          "word": "I",
+          "start": 87.62,
+          "end": 88.12,
+          "probability": 0.9574429988861084
+        },
+        {
+          "word": "like",
+          "start": 88.12,
+          "end": 88.5,
+          "probability": 0.017374586313962936
+        },
+        {
+          "word": "the",
+          "start": 88.5,
+          "end": 88.84,
+          "probability": 0.9668779373168945
+        },
+        {
+          "word": "way",
+          "start": 88.84,
+          "end": 89.14,
+          "probability": 0.9949159622192383
+        },
+        {
+          "word": "you",
+          "start": 89.14,
+          "end": 89.58,
+          "probability": 0.476534903049469
+        },
+        {
+          "word": "lie",
+          "start": 89.58,
+          "end": 89.88,
+          "probability": 0.8703337907791138
+        }
+      ]
+    },
+    {
+      "start_time": 102.22,
+      "end_time": 104.28,
+      "duration": 2.0600000000000023,
+      "text": "You ever love somebody so much, you can barely breathe when you're with them.",
+      "confidence": 0.88,
+      "word_timings": [
+        {
+          "word": "You",
+          "start": 102.22,
+          "end": 102.78,
+          "probability": 0.6367160677909851
+        },
+        {
+          "word": "have",
+          "start": 102.78,
+          "end": 103.0,
+          "probability": 0.8348236083984375
+        },
+        {
+          "word": "a",
+          "start": 103.0,
+          "end": 103.12,
+          "probability": 0.6235970854759216
+        },
+        {
+          "word": "love",
+          "start": 103.12,
+          "end": 103.22,
+          "probability": 0.5302475094795227
+        },
+        {
+          "word": "somebody",
+          "start": 103.22,
+          "end": 103.7,
+          "probability": 0.5787965655326843
+        },
+        {
+          "word": "so",
+          "start": 103.7,
+          "end": 103.98,
+          "probability": 0.9755913019180298
+        },
+        {
+          "word": "much",
+          "start": 103.98,
+          "end": 104.28,
+          "probability": 0.9951584935188293
+        }
+      ]
+    },
+    {
+      "start_time": 106.28,
+      "end_time": 108.64,
+      "duration": 2.3599999999999994,
+      "text": "You meet, and neither one of you even know what hit them.",
+      "confidence": 0.96,
+      "word_timings": [
+        {
+          "word": "And",
+          "start": 106.28,
+          "end": 106.6,
+          "probability": 0.5208451151847839
+        },
+        {
+          "word": "neither",
+          "start": 106.6,
+          "end": 106.88,
+          "probability": 0.9527941942214966
+        },
+        {
+          "word": "one",
+          "start": 106.88,
+          "end": 107.16,
+          "probability": 0.9886051416397095
+        },
+        {
+          "word": "of",
+          "start": 107.16,
+          "end": 107.28,
+          "probability": 0.7353531718254089
+        },
+        {
+          "word": "you",
+          "start": 107.28,
+          "end": 107.48,
+          "probability": 0.9990057349205017
+        },
+        {
+          "word": "even",
+          "start": 107.48,
+          "end": 107.96,
+          "probability": 0.5209254026412964
+        },
+        {
+          "word": "know",
+          "start": 107.96,
+          "end": 108.16,
+          "probability": 0.8272042274475098
+        },
+        {
+          "word": "what",
+          "start": 108.16,
+          "end": 108.32,
+          "probability": 0.45701104402542114
+        },
+        {
+          "word": "hit",
+          "start": 108.32,
+          "end": 108.52,
+          "probability": 0.9402507543563843
+        },
+        {
+          "word": "him",
+          "start": 108.52,
+          "end": 108.64,
+          "probability": 0.7393612861633301
+        }
+      ]
+    },
+    {
+      "start_time": 108.64,
+      "end_time": 110.64,
+      "duration": 2.0,
+      "text": "Got that warm fuzzy feeling, getting chills used to get them.",
+      "confidence": 0.93,
+      "word_timings": [
+        {
+          "word": "Got",
+          "start": 108.64,
+          "end": 108.84,
+          "probability": 0.8788513541221619
+        },
+        {
+          "word": "that",
+          "start": 108.84,
+          "end": 109.0,
+          "probability": 0.9939436316490173
+        },
+        {
+          "word": "warm",
+          "start": 109.0,
+          "end": 109.22,
+          "probability": 0.809853732585907
+        },
+        {
+          "word": "fuzzy",
+          "start": 109.22,
+          "end": 109.62,
+          "probability": 0.7195153832435608
+        },
+        {
+          "word": "feeling,",
+          "start": 109.62,
+          "end": 109.92,
+          "probability": 0.6074414253234863
+        },
+        {
+          "word": "get",
+          "start": 110.16,
+          "end": 110.24,
+          "probability": 0.3772423267364502
+        },
+        {
+          "word": "him",
+          "start": 110.24,
+          "end": 110.36,
+          "probability": 0.7735183238983154
+        },
+        {
+          "word": "chills",
+          "start": 110.36,
+          "end": 110.64,
+          "probability": 0.9223555326461792
+        }
+      ]
+    },
+    {
+      "start_time": 110.64,
+      "end_time": 112.66,
+      "duration": 2.019999999999996,
+      "text": "Now you're getting fucking sick of looking at them.",
+      "confidence": 0.73,
+      "word_timings": [
+        {
+          "word": "Used",
+          "start": 110.64,
+          "end": 110.92,
+          "probability": 0.16092713177204132
+        },
+        {
+          "word": "to",
+          "start": 110.92,
+          "end": 111.08,
+          "probability": 0.9986668825149536
+        },
+        {
+          "word": "get",
+          "start": 111.08,
+          "end": 111.26,
+          "probability": 0.9827017188072205
+        },
+        {
+          "word": "him,",
+          "start": 111.26,
+          "end": 111.42,
+          "probability": 0.9441505074501038
+        },
+        {
+          "word": "now",
+          "start": 111.42,
+          "end": 111.6,
+          "probability": 0.9665724635124207
+        },
+        {
+          "word": "you're",
+          "start": 111.6,
+          "end": 111.8,
+          "probability": 0.9636121690273285
+        },
+        {
+          "word": "kiddin'",
+          "start": 111.8,
+          "end": 112.06,
+          "probability": 0.433573916554451
+        },
+        {
+          "word": "fucking",
+          "start": 112.2,
+          "end": 112.4,
+          "probability": 0.2790527939796448
+        },
+        {
+          "word": "sick",
+          "start": 112.4,
+          "end": 112.66,
+          "probability": 0.9818094968795776
+        }
+      ]
+    },
+    {
+      "start_time": 112.66,
+      "end_time": 114.88,
+      "duration": 2.219999999999999,
+      "text": "You swore you'd never hit them, never do nothing to hurt them.",
+      "confidence": 0.65,
+      "word_timings": [
+        {
+          "word": "A",
+          "start": 112.66,
+          "end": 112.82,
+          "probability": 0.018354816362261772
+        },
+        {
+          "word": "look",
+          "start": 112.82,
+          "end": 112.98,
+          "probability": 0.3125001788139343
+        },
+        {
+          "word": "at",
+          "start": 112.98,
+          "end": 113.18,
+          "probability": 0.8123716115951538
+        },
+        {
+          "word": "him,",
+          "start": 113.18,
+          "end": 113.44,
+          "probability": 0.21848315000534058
+        },
+        {
+          "word": "you",
+          "start": 113.58,
+          "end": 113.78,
+          "probability": 0.7907567024230957
+        },
+        {
+          "word": "swore",
+          "start": 113.78,
+          "end": 114.08,
+          "probability": 0.7311919629573822
+        },
+        {
+          "word": "you'd",
+          "start": 114.08,
+          "end": 114.28,
+          "probability": 0.7105645537376404
+        },
+        {
+          "word": "never",
+          "start": 114.28,
+          "end": 114.44,
+          "probability": 0.9974652528762817
+        },
+        {
+          "word": "hit",
+          "start": 114.44,
+          "end": 114.74,
+          "probability": 0.9422210454940796
+        },
+        {
+          "word": "him",
+          "start": 114.74,
+          "end": 114.88,
+          "probability": 0.8989869356155396
+        }
+      ]
+    },
+    {
+      "start_time": 114.88,
+      "end_time": 117.52,
+      "duration": 2.6400000000000006,
+      "text": "Now you're in each other's face.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "Never",
+          "start": 114.88,
+          "end": 115.14,
+          "probability": 0.13394294679164886
+        },
+        {
+          "word": "do",
+          "start": 115.14,
+          "end": 115.42,
+          "probability": 0.9173896312713623
+        },
+        {
+          "word": "none",
+          "start": 115.42,
+          "end": 115.62,
+          "probability": 0.9008141160011292
+        },
+        {
+          "word": "to",
+          "start": 115.62,
+          "end": 115.94,
+          "probability": 0.2002556324005127
+        },
+        {
+          "word": "hurt",
+          "start": 115.94,
+          "end": 116.14,
+          "probability": 0.9545704126358032
+        },
+        {
+          "word": "him,",
+          "start": 116.14,
+          "end": 116.34,
+          "probability": 0.9488767981529236
+        },
+        {
+          "word": "now",
+          "start": 116.34,
+          "end": 116.48,
+          "probability": 0.8389308452606201
+        },
+        {
+          "word": "you're",
+          "start": 116.48,
+          "end": 116.7,
+          "probability": 0.9658456444740295
+        },
+        {
+          "word": "in",
+          "start": 116.7,
+          "end": 116.8,
+          "probability": 0.9912450909614563
+        },
+        {
+          "word": "each",
+          "start": 116.8,
+          "end": 117.04,
+          "probability": 0.9834352135658264
+        },
+        {
+          "word": "other's",
+          "start": 117.04,
+          "end": 117.34,
+          "probability": 0.9799559712409973
+        },
+        {
+          "word": "face",
+          "start": 117.34,
+          "end": 117.52,
+          "probability": 0.7129640579223633
+        }
+      ]
+    },
+    {
+      "start_time": 104.28,
+      "end_time": 106.28,
+      "duration": 2.0,
+      "text": "Be within them.",
+      "confidence": 0.64,
+      "word_timings": [
+        {
+          "word": "You",
+          "start": 104.28,
+          "end": 104.48,
+          "probability": 0.7299203872680664
+        },
+        {
+          "word": "can",
+          "start": 104.48,
+          "end": 104.56,
+          "probability": 0.9663849472999573
+        },
+        {
+          "word": "barely",
+          "start": 104.56,
+          "end": 104.86,
+          "probability": 0.9952393770217896
+        },
+        {
+          "word": "breathe",
+          "start": 104.86,
+          "end": 105.2,
+          "probability": 0.8999850153923035
+        },
+        {
+          "word": "when",
+          "start": 105.2,
+          "end": 105.42,
+          "probability": 0.923882246017456
+        },
+        {
+          "word": "you're",
+          "start": 105.42,
+          "end": 105.64,
+          "probability": 0.9516220986843109
+        },
+        {
+          "word": "with",
+          "start": 105.64,
+          "end": 105.78,
+          "probability": 0.954540491104126
+        },
+        {
+          "word": "him,",
+          "start": 105.78,
+          "end": 105.92,
+          "probability": 0.5853712558746338
+        },
+        {
+          "word": "you",
+          "start": 105.92,
+          "end": 106.1,
+          "probability": 0.9711106419563293
+        },
+        {
+          "word": "meet",
+          "start": 106.1,
+          "end": 106.28,
+          "probability": 0.77497398853302
+        }
+      ]
+    },
+    {
+      "start_time": 117.52,
+      "end_time": 119.72,
+      "duration": 2.200000000000003,
+      "text": "And you burst when you spit them.",
+      "confidence": 0.81,
+      "word_timings": [
+        {
+          "word": "We",
+          "start": 117.52,
+          "end": 117.8,
+          "probability": 0.06758638471364975
+        },
+        {
+          "word": "wouldn't",
+          "start": 117.8,
+          "end": 118.02,
+          "probability": 0.6634746491909027
+        },
+        {
+          "word": "fit",
+          "start": 118.02,
+          "end": 118.14,
+          "probability": 0.6985003352165222
+        },
+        {
+          "word": "them",
+          "start": 118.14,
+          "end": 118.3,
+          "probability": 0.40724048018455505
+        },
+        {
+          "word": "in",
+          "start": 118.3,
+          "end": 118.46,
+          "probability": 0.9826363325119019
+        },
+        {
+          "word": "your",
+          "start": 118.46,
+          "end": 118.66,
+          "probability": 0.9632008671760559
+        },
+        {
+          "word": "words",
+          "start": 118.66,
+          "end": 118.94,
+          "probability": 0.2897883653640747
+        },
+        {
+          "word": "when",
+          "start": 118.94,
+          "end": 119.18,
+          "probability": 0.6223644018173218
+        },
+        {
+          "word": "you",
+          "start": 119.18,
+          "end": 119.3,
+          "probability": 0.8930679559707642
+        },
+        {
+          "word": "spit",
+          "start": 119.3,
+          "end": 119.52,
+          "probability": 0.9453563094139099
+        },
+        {
+          "word": "him",
+          "start": 119.52,
+          "end": 119.72,
+          "probability": 0.4750499725341797
+        }
+      ]
+    },
+    {
+      "start_time": 119.72,
+      "end_time": 122.06,
+      "duration": 2.3400000000000034,
+      "text": "You push, pull each other's heads.",
+      "confidence": 0.88,
+      "word_timings": [
+        {
+          "word": "You",
+          "start": 119.72,
+          "end": 120.0,
+          "probability": 0.7346551418304443
+        },
+        {
+          "word": "boys",
+          "start": 120.0,
+          "end": 120.28,
+          "probability": 0.34576693177223206
+        },
+        {
+          "word": "pull",
+          "start": 120.28,
+          "end": 120.54,
+          "probability": 0.6524314880371094
+        },
+        {
+          "word": "each",
+          "start": 120.54,
+          "end": 120.8,
+          "probability": 0.9944086670875549
+        },
+        {
+          "word": "other's",
+          "start": 120.8,
+          "end": 121.16,
+          "probability": 0.9784067869186401
+        },
+        {
+          "word": "hands,",
+          "start": 121.16,
+          "end": 121.3,
+          "probability": 0.33103927969932556
+        },
+        {
+          "word": "scratch,",
+          "start": 121.54,
+          "end": 121.64,
+          "probability": 0.2320030927658081
+        },
+        {
+          "word": "clop",
+          "start": 121.88,
+          "end": 122.06,
+          "probability": 0.44989365339279175
+        }
+      ]
+    },
+    {
+      "start_time": 122.56,
+      "end_time": 125.56,
+      "duration": 3.0,
+      "text": "Scratch, pop, hit them, thump, tap, hit them.",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 124.46,
+      "end_time": 126.6,
+      "duration": 2.1400000000000006,
+      "text": "So lost in the moments when you're in them.",
+      "confidence": 0.65,
+      "word_timings": [
+        {
+          "word": "When",
+          "start": 124.46,
+          "end": 124.72,
+          "probability": 0.1924504041671753
+        },
+        {
+          "word": "you're",
+          "start": 124.72,
+          "end": 124.92,
+          "probability": 0.553305059671402
+        },
+        {
+          "word": "in",
+          "start": 124.92,
+          "end": 125.06,
+          "probability": 0.9601184725761414
+        },
+        {
+          "word": "him,",
+          "start": 125.06,
+          "end": 125.22,
+          "probability": 0.6734588146209717
+        },
+        {
+          "word": "it's",
+          "start": 125.3,
+          "end": 125.4,
+          "probability": 0.6389256119728088
+        },
+        {
+          "word": "the",
+          "start": 125.4,
+          "end": 125.52,
+          "probability": 0.9716628193855286
+        },
+        {
+          "word": "race",
+          "start": 125.52,
+          "end": 125.78,
+          "probability": 0.8845226168632507
+        },
+        {
+          "word": "that's",
+          "start": 125.78,
+          "end": 126.2,
+          "probability": 0.5011267513036728
+        },
+        {
+          "word": "the",
+          "start": 126.2,
+          "end": 126.2,
+          "probability": 0.14299239218235016
+        },
+        {
+          "word": "culprit",
+          "start": 126.2,
+          "end": 126.6,
+          "probability": 0.37932342290878296
+        }
+      ]
+    },
+    {
+      "start_time": 126.6,
+      "end_time": 129.64,
+      "duration": 3.039999999999992,
+      "text": "It's the phrase that you call break and chose your bones.",
+      "confidence": 0.67,
+      "word_timings": [
+        {
+          "word": "Controls",
+          "start": 126.6,
+          "end": 127.22,
+          "probability": 0.4934714734554291
+        },
+        {
+          "word": "your",
+          "start": 127.22,
+          "end": 127.28,
+          "probability": 0.5556482076644897
+        },
+        {
+          "word": "boat,",
+          "start": 127.28,
+          "end": 127.5,
+          "probability": 0.6209200024604797
+        },
+        {
+          "word": "so",
+          "start": 127.7,
+          "end": 127.8,
+          "probability": 0.6022515296936035
+        },
+        {
+          "word": "they",
+          "start": 127.8,
+          "end": 127.94,
+          "probability": 0.5795208811759949
+        },
+        {
+          "word": "say",
+          "start": 127.94,
+          "end": 128.12,
+          "probability": 0.955076277256012
+        },
+        {
+          "word": "it",
+          "start": 128.12,
+          "end": 128.3,
+          "probability": 0.4830794930458069
+        },
+        {
+          "word": "best",
+          "start": 128.3,
+          "end": 128.52,
+          "probability": 0.9453114867210388
+        },
+        {
+          "word": "they",
+          "start": 128.52,
+          "end": 128.64,
+          "probability": 0.2617656886577606
+        },
+        {
+          "word": "call",
+          "start": 128.64,
+          "end": 128.82,
+          "probability": 0.934047520160675
+        },
+        {
+          "word": "you",
+          "start": 128.82,
+          "end": 128.94,
+          "probability": 0.6682858467102051
+        },
+        {
+          "word": "separate",
+          "start": 128.94,
+          "end": 129.26,
+          "probability": 0.9653821587562561
+        },
+        {
+          "word": "ways",
+          "start": 129.26,
+          "end": 129.64,
+          "probability": 0.9519068598747253
+        }
+      ]
+    },
+    {
+      "start_time": 130.14,
+      "end_time": 133.14,
+      "duration": 3.0,
+      "text": "So they say it best, they call you separate ways.",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 129.64,
+      "end_time": 131.9,
+      "duration": 2.2600000000000193,
+      "text": "Guess that they don't know you cause today, that was yesterday.",
+      "confidence": 0.91,
+      "word_timings": [
+        {
+          "word": "Guess",
+          "start": 129.64,
+          "end": 129.86,
+          "probability": 0.8126800656318665
+        },
+        {
+          "word": "if",
+          "start": 129.86,
+          "end": 130.08,
+          "probability": 0.28924131393432617
+        },
+        {
+          "word": "they",
+          "start": 130.08,
+          "end": 130.22,
+          "probability": 0.8923885822296143
+        },
+        {
+          "word": "don't",
+          "start": 130.22,
+          "end": 130.38,
+          "probability": 0.9865521490573883
+        },
+        {
+          "word": "know",
+          "start": 130.38,
+          "end": 130.54,
+          "probability": 0.9669235348701477
+        },
+        {
+          "word": "your",
+          "start": 130.54,
+          "end": 130.7,
+          "probability": 0.3420494794845581
+        },
+        {
+          "word": "custody,",
+          "start": 130.7,
+          "end": 130.98,
+          "probability": 0.49835291504859924
+        },
+        {
+          "word": "that",
+          "start": 131.4,
+          "end": 131.6,
+          "probability": 0.9606972932815552
+        },
+        {
+          "word": "was",
+          "start": 131.6,
+          "end": 131.76,
+          "probability": 0.9743027091026306
+        },
+        {
+          "word": "yesterday",
+          "start": 131.76,
+          "end": 131.9,
+          "probability": 0.9607329368591309
+        }
+      ]
+    },
+    {
+      "start_time": 132.42,
+      "end_time": 134.46,
+      "duration": 2.0400000000000205,
+      "text": "Yesterday is always a different day.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "Yesterday",
+          "start": 132.42,
+          "end": 132.82,
+          "probability": 0.617404580116272
+        },
+        {
+          "word": "is",
+          "start": 132.82,
+          "end": 133.22,
+          "probability": 0.8084548115730286
+        },
+        {
+          "word": "always",
+          "start": 133.22,
+          "end": 133.46,
+          "probability": 0.31382134556770325
+        },
+        {
+          "word": "a",
+          "start": 133.46,
+          "end": 133.82,
+          "probability": 0.9608142375946045
+        },
+        {
+          "word": "different",
+          "start": 133.82,
+          "end": 134.12,
+          "probability": 0.9979457259178162
+        },
+        {
+          "word": "day",
+          "start": 134.12,
+          "end": 134.46,
+          "probability": 0.9917940497398376
+        }
+      ]
+    },
+    {
+      "start_time": 134.46,
+      "end_time": 137.14,
+      "duration": 2.6799999999999784,
+      "text": "It's not like broken records playing over what you promised them.",
+      "confidence": 0.88,
+      "word_timings": [
+        {
+          "word": "It's",
+          "start": 134.46,
+          "end": 134.64,
+          "probability": 0.6668227165937424
+        },
+        {
+          "word": "not",
+          "start": 134.64,
+          "end": 134.72,
+          "probability": 0.9760960936546326
+        },
+        {
+          "word": "like",
+          "start": 134.72,
+          "end": 134.86,
+          "probability": 0.9943675398826599
+        },
+        {
+          "word": "broken",
+          "start": 134.86,
+          "end": 135.16,
+          "probability": 0.7590200901031494
+        },
+        {
+          "word": "records",
+          "start": 135.16,
+          "end": 135.46,
+          "probability": 0.9370068311691284
+        },
+        {
+          "word": "playing,",
+          "start": 135.46,
+          "end": 135.84,
+          "probability": 0.881874144077301
+        },
+        {
+          "word": "I'll",
+          "start": 135.9,
+          "end": 136.16,
+          "probability": 0.5660052448511124
+        },
+        {
+          "word": "post",
+          "start": 136.16,
+          "end": 136.26,
+          "probability": 0.5955159664154053
+        },
+        {
+          "word": "what",
+          "start": 136.26,
+          "end": 136.4,
+          "probability": 0.618634819984436
+        },
+        {
+          "word": "you",
+          "start": 136.4,
+          "end": 136.54,
+          "probability": 0.7972164154052734
+        },
+        {
+          "word": "promised",
+          "start": 136.54,
+          "end": 136.88,
+          "probability": 0.9565598368644714
+        },
+        {
+          "word": "up",
+          "start": 136.88,
+          "end": 137.14,
+          "probability": 0.36068224906921387
+        }
+      ]
+    },
+    {
+      "start_time": 137.14,
+      "end_time": 139.94,
+      "duration": 2.8000000000000114,
+      "text": "Next time they'll show restraint.",
+      "confidence": 0.72,
+      "word_timings": [
+        {
+          "word": "Next",
+          "start": 137.14,
+          "end": 137.5,
+          "probability": 0.8736996650695801
+        },
+        {
+          "word": "time",
+          "start": 137.5,
+          "end": 137.8,
+          "probability": 0.9982877373695374
+        },
+        {
+          "word": "you",
+          "start": 137.8,
+          "end": 137.94,
+          "probability": 0.47370976209640503
+        },
+        {
+          "word": "show",
+          "start": 137.94,
+          "end": 138.12,
+          "probability": 0.7531223297119141
+        },
+        {
+          "word": "your",
+          "start": 138.12,
+          "end": 138.26,
+          "probability": 0.46173548698425293
+        },
+        {
+          "word": "strength,",
+          "start": 138.26,
+          "end": 138.52,
+          "probability": 0.714688241481781
+        },
+        {
+          "word": "you",
+          "start": 138.52,
+          "end": 138.86,
+          "probability": 0.9793901443481445
+        },
+        {
+          "word": "don't",
+          "start": 138.86,
+          "end": 139.04,
+          "probability": 0.992083340883255
+        },
+        {
+          "word": "get",
+          "start": 139.04,
+          "end": 139.2,
+          "probability": 0.6868964433670044
+        },
+        {
+          "word": "another",
+          "start": 139.2,
+          "end": 139.54,
+          "probability": 0.6345851421356201
+        },
+        {
+          "word": "chance",
+          "start": 139.54,
+          "end": 139.94,
+          "probability": 0.99798583984375
+        }
+      ]
+    },
+    {
+      "start_time": 140.44,
+      "end_time": 143.44,
+      "duration": 3.0,
+      "text": "You don't get another chance.",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 139.94,
+      "end_time": 142.32,
+      "duration": 2.3799999999999955,
+      "text": "Life is not a tango game, but you lie to gain.",
+      "confidence": 0.61,
+      "word_timings": [
+        {
+          "word": "Like",
+          "start": 139.94,
+          "end": 140.28,
+          "probability": 0.3944220244884491
+        },
+        {
+          "word": "there's",
+          "start": 140.28,
+          "end": 140.44,
+          "probability": 0.907739520072937
+        },
+        {
+          "word": "no",
+          "start": 140.44,
+          "end": 140.58,
+          "probability": 0.9829015731811523
+        },
+        {
+          "word": "return",
+          "start": 140.58,
+          "end": 140.88,
+          "probability": 0.07667849957942963
+        },
+        {
+          "word": "to",
+          "start": 140.88,
+          "end": 141.06,
+          "probability": 0.5731678009033203
+        },
+        {
+          "word": "pain,",
+          "start": 141.06,
+          "end": 141.3,
+          "probability": 0.9152725338935852
+        },
+        {
+          "word": "put",
+          "start": 141.3,
+          "end": 141.58,
+          "probability": 0.3978973925113678
+        },
+        {
+          "word": "you",
+          "start": 141.58,
+          "end": 141.76,
+          "probability": 0.8998726010322571
+        },
+        {
+          "word": "in",
+          "start": 141.76,
+          "end": 141.84,
+          "probability": 0.20664922893047333
+        },
+        {
+          "word": "a",
+          "start": 141.84,
+          "end": 141.94,
+          "probability": 0.31991931796073914
+        },
+        {
+          "word": "lot",
+          "start": 141.94,
+          "end": 141.98,
+          "probability": 0.733518660068512
+        },
+        {
+          "word": "of",
+          "start": 141.98,
+          "end": 142.1,
+          "probability": 0.9948533177375793
+        },
+        {
+          "word": "pain",
+          "start": 142.1,
+          "end": 142.32,
+          "probability": 0.951784610748291
+        }
+      ]
+    },
+    {
+      "start_time": 142.32,
+      "end_time": 144.44,
+      "duration": 2.1200000000000045,
+      "text": "Now you get to watch her leap out the window.",
+      "confidence": 0.9,
+      "word_timings": [
+        {
+          "word": "Now",
+          "start": 142.32,
+          "end": 142.66,
+          "probability": 0.8003127574920654
+        },
+        {
+          "word": "you",
+          "start": 142.66,
+          "end": 142.78,
+          "probability": 0.9789278507232666
+        },
+        {
+          "word": "get",
+          "start": 142.78,
+          "end": 142.94,
+          "probability": 0.9814003705978394
+        },
+        {
+          "word": "to",
+          "start": 142.94,
+          "end": 143.14,
+          "probability": 0.9723871350288391
+        },
+        {
+          "word": "watch",
+          "start": 143.14,
+          "end": 143.34,
+          "probability": 0.8549697399139404
+        },
+        {
+          "word": "a",
+          "start": 143.34,
+          "end": 143.52,
+          "probability": 0.6315070390701294
+        },
+        {
+          "word": "leave,",
+          "start": 143.52,
+          "end": 143.74,
+          "probability": 0.9134666323661804
+        },
+        {
+          "word": "about",
+          "start": 143.74,
+          "end": 144.02,
+          "probability": 0.0755515843629837
+        },
+        {
+          "word": "the",
+          "start": 144.02,
+          "end": 144.16,
+          "probability": 0.9644762277603149
+        },
+        {
+          "word": "window",
+          "start": 144.16,
+          "end": 144.44,
+          "probability": 0.8706845641136169
+        }
+      ]
+    },
+    {
+      "start_time": 144.44,
+      "end_time": 146.14,
+      "duration": 1.6999999999999886,
+      "text": "Guess that's why they call it windowpane.",
+      "confidence": 0.95,
+      "word_timings": [
+        {
+          "word": "Guess",
+          "start": 144.44,
+          "end": 144.7,
+          "probability": 0.06292277574539185
+        },
+        {
+          "word": "that's",
+          "start": 144.7,
+          "end": 144.88,
+          "probability": 0.7258940190076828
+        },
+        {
+          "word": "why",
+          "start": 144.88,
+          "end": 145.06,
+          "probability": 0.8710050582885742
+        },
+        {
+          "word": "they",
+          "start": 145.06,
+          "end": 145.16,
+          "probability": 0.9184539318084717
+        },
+        {
+          "word": "call",
+          "start": 145.16,
+          "end": 145.38,
+          "probability": 0.9713656902313232
+        },
+        {
+          "word": "it",
+          "start": 145.38,
+          "end": 145.58,
+          "probability": 0.9956516623497009
+        },
+        {
+          "word": "window",
+          "start": 145.58,
+          "end": 145.84,
+          "probability": 0.7860402464866638
+        },
+        {
+          "word": "pay",
+          "start": 145.84,
+          "end": 146.14,
+          "probability": 0.700264036655426
+        }
+      ]
+    },
+    {
+      "start_time": 69.28,
+      "end_time": 73.34,
+      "duration": 4.060000000000002,
+      "text": "Just gonna stand there.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "Just",
+          "start": 69.28,
+          "end": 69.6,
+          "probability": 0.30614355206489563
+        },
+        {
+          "word": "gonna",
+          "start": 69.6,
+          "end": 70.06,
+          "probability": 0.9538378715515137
+        },
+        {
+          "word": "stand",
+          "start": 70.06,
+          "end": 70.64,
+          "probability": 0.978402853012085
+        },
+        {
+          "word": "there,",
+          "start": 70.64,
+          "end": 71.44,
+          "probability": 0.9927487969398499
+        },
+        {
+          "word": "watch",
+          "start": 71.64,
+          "end": 72.22,
+          "probability": 0.9494233131408691
+        },
+        {
+          "word": "me",
+          "start": 72.22,
+          "end": 72.58,
+          "probability": 0.9980169534683228
+        },
+        {
+          "word": "burn",
+          "start": 72.58,
+          "end": 73.34,
+          "probability": 0.9479877352714539
+        }
+      ]
+    },
+    {
+      "start_time": 146.14,
+      "end_time": 149.94,
+      "duration": 3.8000000000000114,
+      "text": "Watch me burn.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "Just",
+          "start": 146.14,
+          "end": 146.76,
+          "probability": 0.552165150642395
+        },
+        {
+          "word": "gonna",
+          "start": 146.76,
+          "end": 147.22,
+          "probability": 0.9265590310096741
+        },
+        {
+          "word": "stand",
+          "start": 147.22,
+          "end": 147.82,
+          "probability": 0.9854071140289307
+        },
+        {
+          "word": "there,",
+          "start": 147.82,
+          "end": 148.7,
+          "probability": 0.9903578162193298
+        },
+        {
+          "word": "watch",
+          "start": 148.9,
+          "end": 149.4,
+          "probability": 0.9677085876464844
+        },
+        {
+          "word": "me",
+          "start": 149.4,
+          "end": 149.86,
+          "probability": 0.9962494969367981
+        },
+        {
+          "word": "burn",
+          "start": 149.86,
+          "end": 150.18,
+          "probability": 0.9806077480316162
+        }
+      ]
+    },
+    {
+      "start_time": 241.5,
+      "end_time": 247.24,
+      "duration": 5.740000000000009,
+      "text": "But that's all right, because I left the way it hurts.",
+      "confidence": 0.88,
+      "word_timings": [
+        {
+          "word": "But",
+          "start": 241.5,
+          "end": 242.78,
+          "probability": 0.7849035263061523
+        },
+        {
+          "word": "that's",
+          "start": 242.78,
+          "end": 243.2,
+          "probability": 0.9905052185058594
+        },
+        {
+          "word": "alright",
+          "start": 243.2,
+          "end": 243.94,
+          "probability": 0.9953747391700745
+        },
+        {
+          "word": "because",
+          "start": 243.94,
+          "end": 244.82,
+          "probability": 0.9729034304618835
+        },
+        {
+          "word": "I",
+          "start": 244.82,
+          "end": 245.32,
+          "probability": 0.9977959394454956
+        },
+        {
+          "word": "love",
+          "start": 245.32,
+          "end": 245.7,
+          "probability": 0.7664777040481567
+        },
+        {
+          "word": "the",
+          "start": 245.7,
+          "end": 246.12,
+          "probability": 0.8924186825752258
+        },
+        {
+          "word": "way",
+          "start": 246.12,
+          "end": 246.32,
+          "probability": 0.9935011267662048
+        },
+        {
+          "word": "it",
+          "start": 246.32,
+          "end": 246.76,
+          "probability": 0.7192601561546326
+        },
+        {
+          "word": "lies",
+          "start": 246.76,
+          "end": 247.24,
+          "probability": 0.28811895847320557
+        }
+      ]
+    },
+    {
+      "start_time": 157.12,
+      "end_time": 160.94,
+      "duration": 3.819999999999993,
+      "text": "Just gonna stand there and hear me cry.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "Just",
+          "start": 157.12,
+          "end": 157.76,
+          "probability": 0.8211918473243713
+        },
+        {
+          "word": "gonna",
+          "start": 157.76,
+          "end": 158.28,
+          "probability": 0.991072952747345
+        },
+        {
+          "word": "stand",
+          "start": 158.28,
+          "end": 159.04,
+          "probability": 0.9973613619804382
+        },
+        {
+          "word": "there",
+          "start": 159.04,
+          "end": 159.76,
+          "probability": 0.992998480796814
+        },
+        {
+          "word": "and",
+          "start": 159.76,
+          "end": 160.04,
+          "probability": 0.6668627858161926
+        },
+        {
+          "word": "hear",
+          "start": 160.04,
+          "end": 160.32,
+          "probability": 0.9488773345947266
+        },
+        {
+          "word": "me",
+          "start": 160.32,
+          "end": 160.76,
+          "probability": 0.9256458282470703
+        },
+        {
+          "word": "cry",
+          "start": 160.76,
+          "end": 161.07999999999998,
+          "probability": 0.9727690815925598
+        }
+      ]
+    },
+    {
+      "start_time": 247.24,
+      "end_time": 249.92,
+      "duration": 2.6799999999999784,
+      "text": "But that's all right, because I left the way it lies.",
+      "confidence": 0.91,
+      "word_timings": [
+        {
+          "word": "I",
+          "start": 247.24,
+          "end": 248.26,
+          "probability": 0.8744358420372009
+        },
+        {
+          "word": "love",
+          "start": 248.26,
+          "end": 248.58,
+          "probability": 0.9936171770095825
+        },
+        {
+          "word": "the",
+          "start": 248.58,
+          "end": 248.96,
+          "probability": 0.9983086585998535
+        },
+        {
+          "word": "way",
+          "start": 248.96,
+          "end": 249.2,
+          "probability": 0.9978237152099609
+        },
+        {
+          "word": "it",
+          "start": 249.2,
+          "end": 249.48,
+          "probability": 0.98468416929245
+        },
+        {
+          "word": "lies",
+          "start": 249.48,
+          "end": 249.92,
+          "probability": 0.995623767375946
+        }
+      ]
+    },
+    {
+      "start_time": 253.04,
+      "end_time": 255.56,
+      "duration": 2.5200000000000102,
+      "text": "I left the way it lies.",
+      "confidence": 0.91,
+      "word_timings": [
+        {
+          "word": "I",
+          "start": 253.04,
+          "end": 253.76,
+          "probability": 0.7682458162307739
+        },
+        {
+          "word": "love",
+          "start": 253.76,
+          "end": 254.1,
+          "probability": 0.8708305358886719
+        },
+        {
+          "word": "the",
+          "start": 254.1,
+          "end": 254.44,
+          "probability": 0.9130942821502686
+        },
+        {
+          "word": "way",
+          "start": 254.44,
+          "end": 254.68,
+          "probability": 0.9969056248664856
+        },
+        {
+          "word": "it",
+          "start": 254.68,
+          "end": 255.06,
+          "probability": 0.027991583570837975
+        },
+        {
+          "word": "lies",
+          "start": 255.06,
+          "end": 255.56,
+          "probability": 0.61292564868927
+        }
+      ]
+    },
+    {
+      "start_time": 162.16000000000003,
+      "end_time": 167.12,
+      "duration": 4.9599999999999795,
+      "text": "I left the way it lies.",
+      "confidence": 0.82,
+      "word_timings": [
+        {
+          "word": "But",
+          "start": 162.16000000000003,
+          "end": 162.8,
+          "probability": 0.6672189831733704
+        },
+        {
+          "word": "that's",
+          "start": 162.8,
+          "end": 163.2,
+          "probability": 0.9946887791156769
+        },
+        {
+          "word": "alright,",
+          "start": 163.2,
+          "end": 164.0,
+          "probability": 0.9943472743034363
+        },
+        {
+          "word": "because",
+          "start": 164.5,
+          "end": 164.86,
+          "probability": 0.9824121594429016
+        },
+        {
+          "word": "I",
+          "start": 164.86,
+          "end": 165.32,
+          "probability": 0.9982228875160217
+        },
+        {
+          "word": "love",
+          "start": 165.32,
+          "end": 165.7,
+          "probability": 0.451895534992218
+        },
+        {
+          "word": "the",
+          "start": 165.7,
+          "end": 166.06,
+          "probability": 0.9840288758277893
+        },
+        {
+          "word": "way",
+          "start": 166.06,
+          "end": 166.38,
+          "probability": 0.9984058737754822
+        },
+        {
+          "word": "he",
+          "start": 166.38,
+          "end": 166.88,
+          "probability": 0.8622063994407654
+        },
+        {
+          "word": "lies",
+          "start": 166.88,
+          "end": 167.12,
+          "probability": 0.5385294556617737
+        }
+      ]
+    },
+    {
+      "start_time": 179.66000000000003,
+      "end_time": 183.04,
+      "duration": 3.379999999999967,
+      "text": "Now I know we said things, big things that we didn't mean.",
+      "confidence": 0.96,
+      "word_timings": [
+        {
+          "word": "Now",
+          "start": 179.66000000000003,
+          "end": 180.18,
+          "probability": 0.46354106068611145
+        },
+        {
+          "word": "I",
+          "start": 180.18,
+          "end": 180.32,
+          "probability": 0.921678900718689
+        },
+        {
+          "word": "know",
+          "start": 180.32,
+          "end": 180.48,
+          "probability": 0.9955664277076721
+        },
+        {
+          "word": "we",
+          "start": 180.48,
+          "end": 180.66,
+          "probability": 0.5856122970581055
+        },
+        {
+          "word": "said",
+          "start": 180.66,
+          "end": 180.86,
+          "probability": 0.9117743968963623
+        },
+        {
+          "word": "things,",
+          "start": 180.86,
+          "end": 181.36,
+          "probability": 0.9784595966339111
+        },
+        {
+          "word": "dip",
+          "start": 181.42,
+          "end": 181.64,
+          "probability": 0.12767896056175232
+        },
+        {
+          "word": "things,",
+          "start": 181.64,
+          "end": 181.96,
+          "probability": 0.9884129166603088
+        },
+        {
+          "word": "that",
+          "start": 181.96,
+          "end": 182.3,
+          "probability": 0.8778687119483948
+        },
+        {
+          "word": "we",
+          "start": 182.3,
+          "end": 182.46,
+          "probability": 0.9962570667266846
+        },
+        {
+          "word": "didn't",
+          "start": 182.46,
+          "end": 182.82,
+          "probability": 0.9872344136238098
+        },
+        {
+          "word": "mean",
+          "start": 182.82,
+          "end": 183.04,
+          "probability": 0.99580979347229
+        }
+      ]
+    },
+    {
+      "start_time": 183.04,
+      "end_time": 185.2,
+      "duration": 2.1599999999999966,
+      "text": "And we fall back into the same pattern.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "And",
+          "start": 183.04,
+          "end": 183.32,
+          "probability": 0.4255746006965637
+        },
+        {
+          "word": "we",
+          "start": 183.32,
+          "end": 183.44,
+          "probability": 0.9932640790939331
+        },
+        {
+          "word": "fall",
+          "start": 183.44,
+          "end": 183.7,
+          "probability": 0.5132837891578674
+        },
+        {
+          "word": "back",
+          "start": 183.7,
+          "end": 184.02,
+          "probability": 0.9732888340950012
+        },
+        {
+          "word": "into",
+          "start": 184.02,
+          "end": 184.34,
+          "probability": 0.9644384980201721
+        },
+        {
+          "word": "the",
+          "start": 184.34,
+          "end": 184.44,
+          "probability": 0.9949973821640015
+        },
+        {
+          "word": "same",
+          "start": 184.44,
+          "end": 184.76,
+          "probability": 0.9943418502807617
+        },
+        {
+          "word": "patterns",
+          "start": 184.76,
+          "end": 185.2,
+          "probability": 0.9305500388145447
+        }
+      ]
+    },
+    {
+      "start_time": 185.2,
+      "end_time": 188.04,
+      "duration": 2.8400000000000034,
+      "text": "Seventeen, but your temper's just as bad as mine is.",
+      "confidence": 0.7,
+      "word_timings": [
+        {
+          "word": "Same",
+          "start": 185.2,
+          "end": 185.74,
+          "probability": 0.9177142977714539
+        },
+        {
+          "word": "team,",
+          "start": 185.74,
+          "end": 186.2,
+          "probability": 0.8301936388015747
+        },
+        {
+          "word": "but",
+          "start": 186.36,
+          "end": 186.44,
+          "probability": 0.8575348258018494
+        },
+        {
+          "word": "the",
+          "start": 186.44,
+          "end": 186.58,
+          "probability": 0.2057049423456192
+        },
+        {
+          "word": "temperature",
+          "start": 186.58,
+          "end": 186.86,
+          "probability": 0.22485843300819397
+        },
+        {
+          "word": "is",
+          "start": 186.86,
+          "end": 187.26,
+          "probability": 0.4784897267818451
+        },
+        {
+          "word": "bad",
+          "start": 187.26,
+          "end": 187.46,
+          "probability": 0.8276628255844116
+        },
+        {
+          "word": "as",
+          "start": 187.46,
+          "end": 187.64,
+          "probability": 0.8117943406105042
+        },
+        {
+          "word": "mine",
+          "start": 187.64,
+          "end": 187.84,
+          "probability": 0.9605914950370789
+        },
+        {
+          "word": "is",
+          "start": 187.84,
+          "end": 188.04,
+          "probability": 0.2784804403781891
+        }
+      ]
+    },
+    {
+      "start_time": 188.04,
+      "end_time": 190.68,
+      "duration": 2.640000000000015,
+      "text": "You're the same as me when it comes to love you just as blinded.",
+      "confidence": 0.89,
+      "word_timings": [
+        {
+          "word": "You're",
+          "start": 188.04,
+          "end": 188.32,
+          "probability": 0.8128855228424072
+        },
+        {
+          "word": "the",
+          "start": 188.32,
+          "end": 188.32,
+          "probability": 0.9971924424171448
+        },
+        {
+          "word": "same",
+          "start": 188.32,
+          "end": 188.54,
+          "probability": 0.9981542229652405
+        },
+        {
+          "word": "as",
+          "start": 188.54,
+          "end": 188.68,
+          "probability": 0.9785568118095398
+        },
+        {
+          "word": "me",
+          "start": 188.68,
+          "end": 188.92,
+          "probability": 0.9954480528831482
+        },
+        {
+          "word": "when",
+          "start": 188.92,
+          "end": 189.18,
+          "probability": 0.428144633769989
+        },
+        {
+          "word": "it",
+          "start": 189.18,
+          "end": 189.32,
+          "probability": 0.9975332021713257
+        },
+        {
+          "word": "comes",
+          "start": 189.32,
+          "end": 189.52,
+          "probability": 0.996394693851471
+        },
+        {
+          "word": "to",
+          "start": 189.52,
+          "end": 189.7,
+          "probability": 0.9187396764755249
+        },
+        {
+          "word": "love,",
+          "start": 189.7,
+          "end": 189.86,
+          "probability": 0.8804875016212463
+        },
+        {
+          "word": "you",
+          "start": 190.02,
+          "end": 190.06,
+          "probability": 0.9840482473373413
+        },
+        {
+          "word": "just",
+          "start": 190.06,
+          "end": 190.24,
+          "probability": 0.49058079719543457
+        },
+        {
+          "word": "surprising",
+          "start": 190.24,
+          "end": 190.68,
+          "probability": 0.08656182885169983
+        }
+      ]
+    },
+    {
+      "start_time": 191.18,
+      "end_time": 194.18,
+      "duration": 3.0,
+      "text": "Baby, please come back.",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 193.02,
+      "end_time": 196.22,
+      "duration": 3.1999999999999886,
+      "text": "It wasn't you.",
+      "confidence": 0.69,
+      "word_timings": [
+        {
+          "word": "Baby,",
+          "start": 193.02,
+          "end": 193.46,
+          "probability": 0.339974045753479
+        },
+        {
+          "word": "it",
+          "start": 193.68,
+          "end": 193.72,
+          "probability": 0.903563916683197
+        },
+        {
+          "word": "was",
+          "start": 193.72,
+          "end": 193.86,
+          "probability": 0.9925661087036133
+        },
+        {
+          "word": "me,",
+          "start": 193.86,
+          "end": 194.08,
+          "probability": 0.9900155663490295
+        },
+        {
+          "word": "maybe",
+          "start": 194.08,
+          "end": 194.5,
+          "probability": 0.9411818385124207
+        },
+        {
+          "word": "our",
+          "start": 194.5,
+          "end": 194.7,
+          "probability": 0.9403300285339355
+        },
+        {
+          "word": "relationship",
+          "start": 194.7,
+          "end": 195.14,
+          "probability": 0.9955149292945862
+        },
+        {
+          "word": "isn't",
+          "start": 195.14,
+          "end": 195.74,
+          "probability": 0.9701564908027649
+        },
+        {
+          "word": "as",
+          "start": 195.74,
+          "end": 195.88,
+          "probability": 0.9984319806098938
+        },
+        {
+          "word": "crazy",
+          "start": 195.88,
+          "end": 196.22,
+          "probability": 0.9953595995903015
+        }
+      ]
+    },
+    {
+      "start_time": 196.72,
+      "end_time": 199.72,
+      "duration": 3.0,
+      "text": "Baby, it was me.",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 200.22,
+      "end_time": 203.22,
+      "duration": 3.0,
+      "text": "Maybe our relationship isn't as crazy as it seems.",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 196.22,
+      "end_time": 199.68,
+      "duration": 3.460000000000008,
+      "text": "Maybe that's what happens when a tornado meets a volcano.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "It",
+          "start": 196.22,
+          "end": 196.5,
+          "probability": 0.045886944979429245
+        },
+        {
+          "word": "seems,",
+          "start": 196.5,
+          "end": 196.76,
+          "probability": 0.5087704062461853
+        },
+        {
+          "word": "maybe",
+          "start": 196.78,
+          "end": 197.24,
+          "probability": 0.9092724919319153
+        },
+        {
+          "word": "that's",
+          "start": 197.24,
+          "end": 197.54,
+          "probability": 0.9353365302085876
+        },
+        {
+          "word": "what",
+          "start": 197.54,
+          "end": 197.62,
+          "probability": 0.9859998822212219
+        },
+        {
+          "word": "happens",
+          "start": 197.62,
+          "end": 197.92,
+          "probability": 0.9776943922042847
+        },
+        {
+          "word": "when",
+          "start": 197.92,
+          "end": 198.18,
+          "probability": 0.7858776450157166
+        },
+        {
+          "word": "a",
+          "start": 198.18,
+          "end": 198.32,
+          "probability": 0.7978907227516174
+        },
+        {
+          "word": "tornado",
+          "start": 198.32,
+          "end": 198.62,
+          "probability": 0.75592041015625
+        },
+        {
+          "word": "meets",
+          "start": 198.62,
+          "end": 199.22,
+          "probability": 0.9802241325378418
+        },
+        {
+          "word": "a",
+          "start": 199.22,
+          "end": 199.36,
+          "probability": 0.9701711535453796
+        },
+        {
+          "word": "volcano",
+          "start": 199.36,
+          "end": 199.68,
+          "probability": 0.9571569561958313
+        }
+      ]
+    },
+    {
+      "start_time": 200.22,
+      "end_time": 203.6,
+      "duration": 3.3799999999999955,
+      "text": "While I know it's not love you too much.",
+      "confidence": 0.85,
+      "word_timings": [
+        {
+          "word": "I",
+          "start": 200.07999999999998,
+          "end": 200.32,
+          "probability": 0.343359112739563
+        },
+        {
+          "word": "know",
+          "start": 200.32,
+          "end": 200.58,
+          "probability": 0.48541465401649475
+        },
+        {
+          "word": "it's",
+          "start": 200.58,
+          "end": 200.8,
+          "probability": 0.7358935475349426
+        },
+        {
+          "word": "not",
+          "start": 200.8,
+          "end": 200.9,
+          "probability": 0.7278885245323181
+        },
+        {
+          "word": "love",
+          "start": 200.9,
+          "end": 201.08,
+          "probability": 0.8016359806060791
+        },
+        {
+          "word": "you",
+          "start": 201.08,
+          "end": 201.24,
+          "probability": 0.9331086874008179
+        },
+        {
+          "word": "too",
+          "start": 201.24,
+          "end": 201.42,
+          "probability": 0.9643122553825378
+        },
+        {
+          "word": "much,",
+          "start": 201.42,
+          "end": 201.8,
+          "probability": 0.9998194575309753
+        },
+        {
+          "word": "to",
+          "start": 201.8,
+          "end": 202.08,
+          "probability": 0.7800841331481934
+        },
+        {
+          "word": "walk",
+          "start": 202.08,
+          "end": 202.34,
+          "probability": 0.9959585070610046
+        },
+        {
+          "word": "away",
+          "start": 202.34,
+          "end": 202.62,
+          "probability": 0.950685441493988
+        },
+        {
+          "word": "though,",
+          "start": 202.62,
+          "end": 202.84,
+          "probability": 0.40253692865371704
+        },
+        {
+          "word": "come",
+          "start": 203.0,
+          "end": 203.16,
+          "probability": 0.8902820944786072
+        },
+        {
+          "word": "inside",
+          "start": 203.16,
+          "end": 203.6,
+          "probability": 0.991532027721405
+        }
+      ]
+    },
+    {
+      "start_time": 204.1,
+      "end_time": 207.1,
+      "duration": 3.0,
+      "text": "Talk away now.",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 207.6,
+      "end_time": 210.6,
+      "duration": 3.0,
+      "text": "Come inside.",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 203.6,
+      "end_time": 206.66,
+      "duration": 3.0600000000000023,
+      "text": "Pick up your bags off the sidewalk.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "Pick",
+          "start": 203.6,
+          "end": 203.9,
+          "probability": 0.4166443347930908
+        },
+        {
+          "word": "up",
+          "start": 203.9,
+          "end": 204.06,
+          "probability": 0.9956533908843994
+        },
+        {
+          "word": "your",
+          "start": 204.06,
+          "end": 204.16,
+          "probability": 0.6978796720504761
+        },
+        {
+          "word": "bags",
+          "start": 204.16,
+          "end": 204.44,
+          "probability": 0.9470056295394897
+        },
+        {
+          "word": "off",
+          "start": 204.44,
+          "end": 204.68,
+          "probability": 0.4121295213699341
+        },
+        {
+          "word": "the",
+          "start": 204.68,
+          "end": 204.92,
+          "probability": 0.9784579873085022
+        },
+        {
+          "word": "sidewalk,",
+          "start": 204.92,
+          "end": 205.34,
+          "probability": 0.9973483085632324
+        },
+        {
+          "word": "don't",
+          "start": 205.66,
+          "end": 205.76,
+          "probability": 0.9501124918460846
+        },
+        {
+          "word": "you",
+          "start": 205.76,
+          "end": 205.9,
+          "probability": 0.9638692140579224
+        },
+        {
+          "word": "hear",
+          "start": 205.9,
+          "end": 206.06,
+          "probability": 0.9646050930023193
+        },
+        {
+          "word": "some",
+          "start": 206.06,
+          "end": 206.24,
+          "probability": 0.8663744926452637
+        },
+        {
+          "word": "Siri?",
+          "start": 206.24,
+          "end": 206.66,
+          "probability": 0.20463615655899048
+        }
+      ]
+    },
+    {
+      "start_time": 207.16,
+      "end_time": 210.16,
+      "duration": 3.0,
+      "text": "Don't you hear some snaring?",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 206.88,
+      "end_time": 210.84,
+      "duration": 3.960000000000008,
+      "text": "And my voice when I talk?",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "And",
+          "start": 206.88,
+          "end": 206.96,
+          "probability": 0.7892076969146729
+        },
+        {
+          "word": "my",
+          "start": 206.96,
+          "end": 207.14,
+          "probability": 0.9408940672874451
+        },
+        {
+          "word": "voice",
+          "start": 207.14,
+          "end": 207.48,
+          "probability": 0.47269999980926514
+        },
+        {
+          "word": "when",
+          "start": 207.48,
+          "end": 207.66,
+          "probability": 0.856175422668457
+        },
+        {
+          "word": "I",
+          "start": 207.66,
+          "end": 207.86,
+          "probability": 0.9768362641334534
+        },
+        {
+          "word": "talk",
+          "start": 207.86,
+          "end": 208.16,
+          "probability": 0.6039767861366272
+        },
+        {
+          "word": "told",
+          "start": 208.16,
+          "end": 208.54,
+          "probability": 0.5833029747009277
+        },
+        {
+          "word": "it",
+          "start": 208.54,
+          "end": 208.7,
+          "probability": 0.8346081972122192
+        },
+        {
+          "word": "is",
+          "start": 208.7,
+          "end": 208.9,
+          "probability": 0.727243185043335
+        },
+        {
+          "word": "my",
+          "start": 208.9,
+          "end": 209.2,
+          "probability": 0.513313889503479
+        },
+        {
+          "word": "fault,",
+          "start": 209.2,
+          "end": 209.56,
+          "probability": 0.9494390487670898
+        },
+        {
+          "word": "look",
+          "start": 209.56,
+          "end": 209.92,
+          "probability": 0.7800104022026062
+        },
+        {
+          "word": "me",
+          "start": 209.92,
+          "end": 210.12,
+          "probability": 0.9901900887489319
+        },
+        {
+          "word": "in",
+          "start": 210.12,
+          "end": 210.3,
+          "probability": 0.9505166411399841
+        },
+        {
+          "word": "the",
+          "start": 210.3,
+          "end": 210.42,
+          "probability": 0.9885346293449402
+        },
+        {
+          "word": "apple",
+          "start": 210.42,
+          "end": 210.84,
+          "probability": 0.5930255055427551
+        }
+      ]
+    },
+    {
+      "start_time": 211.34,
+      "end_time": 214.34,
+      "duration": 3.0,
+      "text": "Told you this is my fault.",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 214.84,
+      "end_time": 217.84,
+      "duration": 3.0,
+      "text": "Look me in the eyeball.",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 210.84,
+      "end_time": 213.7,
+      "duration": 2.859999999999985,
+      "text": "Next time I'll pistol aim my fist at the drywall.",
+      "confidence": 0.87,
+      "word_timings": [
+        {
+          "word": "Next",
+          "start": 210.84,
+          "end": 211.32,
+          "probability": 0.6999430060386658
+        },
+        {
+          "word": "time",
+          "start": 211.32,
+          "end": 211.6,
+          "probability": 0.9926795959472656
+        },
+        {
+          "word": "I'm",
+          "start": 211.6,
+          "end": 211.8,
+          "probability": 0.6418321579694748
+        },
+        {
+          "word": "pissed,",
+          "start": 211.8,
+          "end": 212.0,
+          "probability": 0.7490993738174438
+        },
+        {
+          "word": "I",
+          "start": 212.06,
+          "end": 212.14,
+          "probability": 0.8141802549362183
+        },
+        {
+          "word": "ain't",
+          "start": 212.14,
+          "end": 212.32,
+          "probability": 0.885228842496872
+        },
+        {
+          "word": "my",
+          "start": 212.32,
+          "end": 212.46,
+          "probability": 0.23356105387210846
+        },
+        {
+          "word": "fist",
+          "start": 212.46,
+          "end": 212.64,
+          "probability": 0.6027193069458008
+        },
+        {
+          "word": "at",
+          "start": 212.64,
+          "end": 212.98,
+          "probability": 0.7980830669403076
+        },
+        {
+          "word": "the",
+          "start": 212.98,
+          "end": 213.12,
+          "probability": 0.994020402431488
+        },
+        {
+          "word": "drywall",
+          "start": 213.12,
+          "end": 213.7,
+          "probability": 0.8160299062728882
+        }
+      ]
+    },
+    {
+      "start_time": 213.7,
+      "end_time": 218.28,
+      "duration": 4.5800000000000125,
+      "text": "Next time.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "Next",
+          "start": 213.7,
+          "end": 214.04,
+          "probability": 0.8440051078796387
+        },
+        {
+          "word": "time",
+          "start": 214.04,
+          "end": 214.4,
+          "probability": 0.9979164004325867
+        },
+        {
+          "word": "there",
+          "start": 214.4,
+          "end": 214.7,
+          "probability": 0.7796717882156372
+        },
+        {
+          "word": "will",
+          "start": 214.7,
+          "end": 214.86,
+          "probability": 0.8925098180770874
+        },
+        {
+          "word": "be",
+          "start": 214.86,
+          "end": 215.02,
+          "probability": 0.9958111047744751
+        },
+        {
+          "word": "no",
+          "start": 215.02,
+          "end": 215.22,
+          "probability": 0.9888545274734497
+        },
+        {
+          "word": "next",
+          "start": 215.22,
+          "end": 215.46,
+          "probability": 0.9923624992370605
+        },
+        {
+          "word": "time,",
+          "start": 215.46,
+          "end": 215.88,
+          "probability": 0.9916895627975464
+        },
+        {
+          "word": "I",
+          "start": 215.92,
+          "end": 216.14,
+          "probability": 0.22417007386684418
+        },
+        {
+          "word": "apologize,",
+          "start": 216.14,
+          "end": 216.74,
+          "probability": 0.9464298486709595
+        },
+        {
+          "word": "even",
+          "start": 216.74,
+          "end": 217.24,
+          "probability": 0.9933387637138367
+        },
+        {
+          "word": "though",
+          "start": 217.24,
+          "end": 217.48,
+          "probability": 0.9744422435760498
+        },
+        {
+          "word": "I",
+          "start": 217.48,
+          "end": 217.6,
+          "probability": 0.9785230755805969
+        },
+        {
+          "word": "know",
+          "start": 217.6,
+          "end": 217.8,
+          "probability": 0.9967972636222839
+        },
+        {
+          "word": "it's",
+          "start": 217.8,
+          "end": 218.04,
+          "probability": 0.9816851615905762
+        },
+        {
+          "word": "lies",
+          "start": 218.04,
+          "end": 218.28,
+          "probability": 0.9308657050132751
+        }
+      ]
+    },
+    {
+      "start_time": 218.78,
+      "end_time": 221.78,
+      "duration": 3.0,
+      "text": "There will be no next time.",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 222.28,
+      "end_time": 225.28,
+      "duration": 3.0,
+      "text": "I apologize, even though I know it's lies.",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 218.28,
+      "end_time": 220.58,
+      "duration": 2.3000000000000114,
+      "text": "I'm tired of the games.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "I'm",
+          "start": 218.28,
+          "end": 218.66,
+          "probability": 0.891120046377182
+        },
+        {
+          "word": "tired",
+          "start": 218.66,
+          "end": 218.96,
+          "probability": 0.9701927900314331
+        },
+        {
+          "word": "of",
+          "start": 218.96,
+          "end": 219.22,
+          "probability": 0.9555225372314453
+        },
+        {
+          "word": "the",
+          "start": 219.22,
+          "end": 219.32,
+          "probability": 0.8773566484451294
+        },
+        {
+          "word": "games,",
+          "start": 219.32,
+          "end": 219.58,
+          "probability": 0.5012121796607971
+        },
+        {
+          "word": "I",
+          "start": 219.58,
+          "end": 219.92,
+          "probability": 0.9941847920417786
+        },
+        {
+          "word": "just",
+          "start": 219.92,
+          "end": 220.04,
+          "probability": 0.9960468411445618
+        },
+        {
+          "word": "want",
+          "start": 220.04,
+          "end": 220.26,
+          "probability": 0.3952723741531372
+        },
+        {
+          "word": "to",
+          "start": 220.26,
+          "end": 220.38,
+          "probability": 0.698380708694458
+        },
+        {
+          "word": "back",
+          "start": 220.38,
+          "end": 220.58,
+          "probability": 0.5901116728782654
+        }
+      ]
+    },
+    {
+      "start_time": 236.44,
+      "end_time": 241.5,
+      "duration": 5.060000000000002,
+      "text": "I just wanna bounce.",
+      "confidence": 0.63,
+      "word_timings": [
+        {
+          "word": "I'm",
+          "start": 236.44,
+          "end": 237.88,
+          "probability": 0.7327226102352142
+        },
+        {
+          "word": "just",
+          "start": 237.88,
+          "end": 237.88,
+          "probability": 0.9981270432472229
+        },
+        {
+          "word": "gonna",
+          "start": 237.88,
+          "end": 238.34,
+          "probability": 0.995344340801239
+        },
+        {
+          "word": "stand",
+          "start": 238.34,
+          "end": 239.02,
+          "probability": 0.9968923926353455
+        },
+        {
+          "word": "there",
+          "start": 239.02,
+          "end": 239.76,
+          "probability": 0.9920157194137573
+        },
+        {
+          "word": "and",
+          "start": 239.76,
+          "end": 240.04,
+          "probability": 0.9945802092552185
+        },
+        {
+          "word": "hear",
+          "start": 240.04,
+          "end": 240.3,
+          "probability": 0.9574198126792908
+        },
+        {
+          "word": "me",
+          "start": 240.3,
+          "end": 240.8,
+          "probability": 0.9634749293327332
+        },
+        {
+          "word": "cry",
+          "start": 240.8,
+          "end": 241.5,
+          "probability": 0.9636511206626892
+        }
+      ]
+    },
+    {
+      "start_time": 220.58,
+      "end_time": 223.72,
+      "duration": 3.1399999999999864,
+      "text": "I know I'm alive.",
+      "confidence": 1.0,
+      "word_timings": [
+        {
+          "word": "I",
+          "start": 220.58,
+          "end": 220.94,
+          "probability": 0.5728492736816406
+        },
+        {
+          "word": "know",
+          "start": 220.94,
+          "end": 221.1,
+          "probability": 0.7906267046928406
+        },
+        {
+          "word": "I'm",
+          "start": 221.1,
+          "end": 221.36,
+          "probability": 0.93406543135643
+        },
+        {
+          "word": "alive,",
+          "start": 221.36,
+          "end": 221.72,
+          "probability": 0.9913273453712463
+        },
+        {
+          "word": "she",
+          "start": 221.72,
+          "end": 222.14,
+          "probability": 0.9393107891082764
+        },
+        {
+          "word": "ever",
+          "start": 222.14,
+          "end": 222.38,
+          "probability": 0.9357293844223022
+        },
+        {
+          "word": "tries",
+          "start": 222.38,
+          "end": 222.6,
+          "probability": 0.46862977743148804
+        },
+        {
+          "word": "to",
+          "start": 222.6,
+          "end": 222.76,
+          "probability": 0.7529498934745789
+        },
+        {
+          "word": "fucking",
+          "start": 222.76,
+          "end": 223.08,
+          "probability": 0.6413066983222961
+        },
+        {
+          "word": "leave",
+          "start": 223.08,
+          "end": 223.3,
+          "probability": 0.9824544787406921
+        },
+        {
+          "word": "a",
+          "start": 223.3,
+          "end": 223.48,
+          "probability": 0.4223909378051758
+        },
+        {
+          "word": "game",
+          "start": 223.48,
+          "end": 223.72,
+          "probability": 0.8869447112083435
+        }
+      ]
+    },
+    {
+      "start_time": 223.72,
+      "end_time": 226.42,
+      "duration": 2.6999999999999886,
+      "text": "If she ever tries to fucking leave again, I'ma tie her to the bed and set this house on fire.",
+      "confidence": 0.89,
+      "word_timings": [
+        {
+          "word": "I'm",
+          "start": 223.72,
+          "end": 224.1,
+          "probability": 0.9027584493160248
+        },
+        {
+          "word": "tired",
+          "start": 224.1,
+          "end": 224.38,
+          "probability": 0.015702739357948303
+        },
+        {
+          "word": "to",
+          "start": 224.38,
+          "end": 224.68,
+          "probability": 0.9531140327453613
+        },
+        {
+          "word": "the",
+          "start": 224.68,
+          "end": 224.82,
+          "probability": 0.9284121990203857
+        },
+        {
+          "word": "bed",
+          "start": 224.82,
+          "end": 225.0,
+          "probability": 0.26590144634246826
+        },
+        {
+          "word": "and",
+          "start": 225.0,
+          "end": 225.18,
+          "probability": 0.8692466020584106
+        },
+        {
+          "word": "set",
+          "start": 225.18,
+          "end": 225.32,
+          "probability": 0.769986629486084
+        },
+        {
+          "word": "this",
+          "start": 225.32,
+          "end": 225.58,
+          "probability": 0.9905676245689392
+        },
+        {
+          "word": "house",
+          "start": 225.58,
+          "end": 225.76,
+          "probability": 0.9858555197715759
+        },
+        {
+          "word": "on",
+          "start": 225.76,
+          "end": 226.12,
+          "probability": 0.9860938787460327
+        },
+        {
+          "word": "fire",
+          "start": 226.12,
+          "end": 226.42,
+          "probability": 0.9167565703392029
+        }
+      ]
+    },
+    {
+      "start_time": 226.92,
+      "end_time": 229.92,
+      "duration": 3.0,
+      "text": "Just gonna stand there and watch me burn.",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 74.0,
+      "end_time": 78.92,
+      "duration": 4.920000000000002,
+      "text": "But that's all right, because I left the way it hurts.",
+      "confidence": 0.82,
+      "word_timings": [
+        {
+          "word": "Well",
+          "start": 74.0,
+          "end": 74.56,
+          "probability": 0.029853155836462975
+        },
+        {
+          "word": "that's",
+          "start": 74.56,
+          "end": 74.94,
+          "probability": 0.5470722168684006
+        },
+        {
+          "word": "alright,",
+          "start": 74.94,
+          "end": 75.82,
+          "probability": 0.6980396509170532
+        },
+        {
+          "word": "because",
+          "start": 76.26,
+          "end": 76.64,
+          "probability": 0.7973656058311462
+        },
+        {
+          "word": "I",
+          "start": 76.64,
+          "end": 77.08,
+          "probability": 0.9583378434181213
+        },
+        {
+          "word": "like",
+          "start": 77.08,
+          "end": 77.52,
+          "probability": 0.9100542664527893
+        },
+        {
+          "word": "the",
+          "start": 77.52,
+          "end": 77.86,
+          "probability": 0.7532005310058594
+        },
+        {
+          "word": "way",
+          "start": 77.86,
+          "end": 78.16,
+          "probability": 0.5702348351478577
+        },
+        {
+          "word": "you",
+          "start": 78.16,
+          "end": 78.56,
+          "probability": 0.005889229476451874
+        },
+        {
+          "word": "hurt",
+          "start": 78.56,
+          "end": 78.92,
+          "probability": 0.7444491386413574
+        }
+      ]
+    },
+    {
+      "start_time": 79.42,
+      "end_time": 82.42,
+      "duration": 3.0,
+      "text": "Just gonna stand there and watch me burn.",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 82.92,
+      "end_time": 85.92,
+      "duration": 3.0,
+      "text": "And she was right, but I'm lost.",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 86.42,
+      "end_time": 89.42,
+      "duration": 3.0,
+      "text": "I wanna stay there and you'll be fine.",
+      "confidence": 0.0
+    },
+    {
+      "start_time": 167.76,
+      "end_time": 169.9,
+      "duration": 2.140000000000015,
+      "text": "That's all right, because I left the way it hurts.",
+      "confidence": 0.64,
+      "word_timings": [
+        {
+          "word": "I",
+          "start": 167.76,
+          "end": 168.28,
+          "probability": 0.3749789893627167
+        },
+        {
+          "word": "love",
+          "start": 168.28,
+          "end": 168.64,
+          "probability": 0.878422200679779
+        },
+        {
+          "word": "the",
+          "start": 168.64,
+          "end": 168.94,
+          "probability": 0.9390007257461548
+        },
+        {
+          "word": "way",
+          "start": 168.94,
+          "end": 169.22,
+          "probability": 0.9886031150817871
+        },
+        {
+          "word": "he",
+          "start": 169.22,
+          "end": 169.52,
+          "probability": 0.004218509420752525
+        },
+        {
+          "word": "lies",
+          "start": 169.52,
+          "end": 169.9,
+          "probability": 0.191143199801445
+        }
+      ]
+    },
+    {
+      "start_time": 173.10000000000002,
+      "end_time": 175.54,
+      "duration": 2.4399999999999693,
+      "text": "I left the way it hurts.",
+      "confidence": 0.71,
+      "word_timings": [
+        {
+          "word": "I",
+          "start": 173.10000000000002,
+          "end": 173.62,
+          "probability": 0.380892276763916
+        },
+        {
+          "word": "love",
+          "start": 173.62,
+          "end": 174.14,
+          "probability": 0.9867368340492249
+        },
+        {
+          "word": "the",
+          "start": 174.14,
+          "end": 174.46,
+          "probability": 0.9958118200302124
+        },
+        {
+          "word": "way",
+          "start": 174.46,
+          "end": 174.76,
+          "probability": 0.9983711838722229
+        },
+        {
+          "word": "he",
+          "start": 174.76,
+          "end": 175.16,
+          "probability": 0.9809199571609497
+        },
+        {
+          "word": "lies",
+          "start": 175.16,
+          "end": 175.54,
+          "probability": 0.9912407994270325
+        }
+      ]
+    },
+    {
+      "start_time": 176.04,
+      "end_time": 179.04,
+      "duration": 3.0,
+      "text": "I left the way it hurts.",
+      "confidence": 0.0
+    }
+  ]
+}

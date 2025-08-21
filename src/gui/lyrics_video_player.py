@@ -1,857 +1,1160 @@
 """
-Synchronized Lyrics Video Player
-Creates a video player with real-time highlighted lyrics based on synced timestamps.
-
-This module creates an HTML5 video player with synchronized lyrics display,
-highlighting words/phrases as they are sung in the audio/video.
+Enhanced Karaoke Player with Professional Features
+Integrates lyrics_video_player.py functionality with audio playback
 """
 
+import tkinter as tk
+from tkinter import ttk, messagebox
 import json
-import os
-from pathlib import Path
-from typing import List, Dict, Optional, Any
-import argparse
-import webbrowser
-import http.server
-import socketserver
-from threading import Thread
 import time
+import threading
+from pathlib import Path
+from typing import Dict, List, Optional, Any
+import webbrowser
+import tempfile
+import shutil
+import subprocess
+import sys
+import platform
 
-class LyricsVideoPlayer:
-    """Creates an HTML5 video player with synchronized lyrics display."""
+class MacOSAudioPlayer:
+    """Audio player using macOS system commands - much more reliable than pygame"""
     
-    def __init__(self, output_dir: str = "./player_output"):
-        """
-        Initialize the lyrics video player.
+    def __init__(self):
+        self.is_playing = False
+        self.is_paused = False
+        self.current_position = 0
+        self.total_length = 0
+        self.process = None
+        self.start_time = 0
+        self.pause_position = 0
+        self.audio_file = None
+        self.is_initialized = True  # Always true for macOS system player
         
-        Args:
-            output_dir: Directory to save the player files
-        """
-        self.output_dir = Path(output_dir)
-        self.output_dir.mkdir(exist_ok=True)
-        
-    def load_sync_data(self, sync_json_path: str) -> Dict[str, Any]:
-        """Load synchronized lyrics data from JSON file."""
-        with open(sync_json_path, 'r', encoding='utf-8') as f:
-            sync_data = json.load(f)
-        
-        print(f"📖 Loaded sync data: {len(sync_data['segments'])} segments")
-        return sync_data
-    
-    def generate_html_player(self, 
-                           audio_path: str, 
-                           sync_json_path: str,
-                           video_path: Optional[str] = None,
-                           title: str = "Synchronized Lyrics Player") -> str:
-        """
-        Generate HTML5 player with synchronized lyrics.
-        
-        Args:
-            audio_path: Path to audio file
-            sync_json_path: Path to synchronized lyrics JSON
-            video_path: Optional path to video file
-            title: Title for the player
+    def load_audio(self, file_path: str) -> bool:
+        """Load audio file"""
+        try:
+            if not Path(file_path).exists():
+                print(f"❌ File not found: {file_path}")
+                return False
+                
+            self.audio_file = str(Path(file_path).absolute())
             
-        Returns:
-            Path to generated HTML file
-        """
-        print("🎬 Generating HTML5 lyrics player...")
+            # Get duration using afinfo (macOS built-in)
+            try:
+                result = subprocess.run(['afinfo', self.audio_file], 
+                                     capture_output=True, text=True)
+                for line in result.stdout.split('\n'):
+                    if 'estimated duration' in line:
+                        duration_str = line.split(':')[1].strip().split()[0]
+                        self.total_length = float(duration_str)
+                        break
+                else:
+                    # Fallback: estimate from file size (rough)
+                    file_size = Path(self.audio_file).stat().st_size
+                    # Rough estimate: 44.1kHz * 16bit * 2channels = ~176KB per second
+                    self.total_length = file_size / (44100 * 2 * 2)
+                    
+            except Exception as e:
+                print(f"⚠️ Could not determine duration: {e}")
+                self.total_length = 300  # 5 min default
+                
+            print(f"🎵 Loaded: {Path(file_path).name} ({self.total_length:.1f}s)")
+            return True
+            
+        except Exception as e:
+            print(f"❌ Failed to load: {e}")
+            return False
+    
+    def play(self) -> bool:
+        """Start playback using afplay (macOS built-in)"""
+        try:
+            # Stop any existing playback
+            if self.process:
+                self.process.terminate()
+                self.process = None
+            
+            print(f"▶️ Starting playback: {Path(self.audio_file).name}")
+            
+            # Use afplay for reliable macOS audio playback
+            if self.current_position > 0:
+                # For seeking, we need to use a different approach
+                # afplay doesn't support seeking, so we'll use ffplay if available
+                try:
+                    self.process = subprocess.Popen([
+                        'ffplay', '-ss', str(self.current_position), 
+                        '-nodisp', '-autoexit', '-loglevel', 'quiet',
+                        self.audio_file
+                    ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                    print(f"🎵 Using ffplay with seek to {self.current_position:.1f}s")
+                except FileNotFoundError:
+                    # Fallback: use afplay from beginning
+                    print("⚠️ ffplay not found, playing from beginning")
+                    self.current_position = 0
+                    self.process = subprocess.Popen(['afplay', self.audio_file])
+            else:
+                # Play from beginning with afplay
+                self.process = subprocess.Popen(['afplay', self.audio_file])
+                print("🎵 Using afplay from beginning")
+                
+            self.is_playing = True
+            self.is_paused = False
+            self.start_time = time.time() - self.current_position
+            
+            # Start a thread to monitor when playback ends
+            threading.Thread(target=self._monitor_playback, daemon=True).start()
+            
+            return True
+            
+        except Exception as e:
+            print(f"❌ Playback failed: {e}")
+            return False
+    
+    def _monitor_playback(self):
+        """Monitor when playback ends"""
+        if self.process:
+            self.process.wait()  # Wait for process to end
+            if self.is_playing:  # If we were supposed to be playing
+                self.is_playing = False
+                print("⏹️ Playback ended")
+    
+    def pause(self):
+        """Pause playback"""
+        if self.is_playing and self.process:
+            self.pause_position = self.get_position()
+            self.process.terminate()
+            self.process = None
+            self.is_playing = False
+            self.is_paused = True
+            print(f"⏸️ Paused at {self.pause_position:.1f}s")
+    
+    def stop(self):
+        """Stop playback"""
+        if self.process:
+            self.process.terminate()
+            self.process = None
+        self.is_playing = False
+        self.is_paused = False
+        self.current_position = 0
+        self.pause_position = 0
+        print("⏹️ Stopped")
+    
+    def get_position(self) -> float:
+        """Get current playback position"""
+        if not self.is_playing and not self.is_paused:
+            return self.current_position
+        
+        if self.is_paused:
+            return self.pause_position
+        
+        if self.is_playing:
+            elapsed = time.time() - self.start_time
+            return min(elapsed, self.total_length)
+        
+        return self.current_position
+    
+    def seek(self, position: float):
+        """Seek to position"""
+        was_playing = self.is_playing
+        self.current_position = max(0, min(position, self.total_length))
+        
+        if was_playing:
+            self.stop()
+            self.play()
+        
+        print(f"⏭️ Seeked to {self.current_position:.1f}s")
+    
+    def set_volume(self, volume: float):
+        """Set system volume (macOS)"""
+        try:
+            vol_level = max(0, min(100, int(volume * 100)))
+            subprocess.run(['osascript', '-e', f'set volume output volume {vol_level}'], 
+                         capture_output=True)
+        except Exception as e:
+            print(f"⚠️ Volume control failed: {e}")
+
+class AudioPlayer:
+    """Smart audio player that chooses the best backend for the platform"""
+    
+    def __init__(self):
+        self.backend = None
+        self.is_initialized = False
+        self._initialize_backend()
+    
+    def _initialize_backend(self):
+        """Initialize the best available audio backend"""
+        system = platform.system().lower()
+        
+        if system == "darwin":  # macOS
+            print("🍎 Using macOS system audio player (afplay)")
+            self.backend = MacOSAudioPlayer()
+            self.is_initialized = True
+        else:
+            # Try pygame for other systems
+            try:
+                import pygame
+                self.backend = self._create_pygame_player()
+                self.is_initialized = True
+                print("🎮 Using pygame audio player")
+            except ImportError:
+                print("❌ No suitable audio backend found")
+                self.is_initialized = False
+    
+    def _create_pygame_player(self):
+        """Create pygame player (for non-macOS systems)"""
+        import pygame
+        
+        class PygamePlayer:
+            def __init__(self):
+                pygame.mixer.init()
+                self.is_initialized = True
+                self.total_length = 0
+                self.start_time = 0
+                self.is_playing = False
+                self.is_paused = False
+                self.current_position = 0
+                self.pause_position = 0
+            
+            def load_audio(self, file_path):
+                try:
+                    pygame.mixer.music.load(file_path)
+                    # Estimate duration
+                    import librosa
+                    self.total_length = librosa.get_duration(filename=file_path)
+                    return True
+                except Exception as e:
+                    print(f"❌ Failed to load: {e}")
+                    return False
+            
+            def play(self):
+                try:
+                    if self.is_paused:
+                        pygame.mixer.music.unpause()
+                        self.start_time = time.time() - self.pause_position
+                        self.is_paused = False
+                    else:
+                        pygame.mixer.music.play(start=self.current_position)
+                        self.start_time = time.time() - self.current_position
+                    self.is_playing = True
+                    return True
+                except Exception as e:
+                    print(f"❌ Play failed: {e}")
+                    return False
+            
+            def pause(self):
+                if self.is_playing:
+                    pygame.mixer.music.pause()
+                    self.pause_position = self.get_position()
+                    self.is_paused = True
+                    self.is_playing = False
+            
+            def stop(self):
+                pygame.mixer.music.stop()
+                self.is_playing = False
+                self.is_paused = False
+                self.current_position = 0
+                self.pause_position = 0
+            
+            def get_position(self):
+                if not self.is_playing and not self.is_paused:
+                    return self.current_position
+                if self.is_paused:
+                    return self.pause_position
+                return time.time() - self.start_time
+            
+            def seek(self, position):
+                self.current_position = max(0, min(position, self.total_length))
+                if self.is_playing or self.is_paused:
+                    self.stop()
+                    self.play()
+            
+            def set_volume(self, volume):
+                pygame.mixer.music.set_volume(max(0.0, min(1.0, volume)))
+        
+        return PygamePlayer()
+    
+    # Delegate all methods to the backend
+    def load_audio(self, file_path: str) -> bool:
+        return self.backend.load_audio(file_path) if self.backend else False
+    
+    def play(self) -> bool:
+        return self.backend.play() if self.backend else False
+    
+    def pause(self):
+        if self.backend:
+            self.backend.pause()
+    
+    def stop(self):
+        if self.backend:
+            self.backend.stop()
+    
+    def get_position(self) -> float:
+        return self.backend.get_position() if self.backend else 0.0
+    
+    def seek(self, position: float):
+        if self.backend:
+            self.backend.seek(position)
+    
+    def set_volume(self, volume: float):
+        if self.backend:
+            self.backend.set_volume(volume)
+    
+    @property
+    def total_length(self) -> float:
+        return self.backend.total_length if self.backend else 0.0
+    
+    @property
+    def is_playing(self) -> bool:
+        return self.backend.is_playing if self.backend else False
+    
+    @property
+    def is_paused(self) -> bool:
+        return self.backend.is_paused if self.backend else False
+
+class EnhancedKaraokePlayer:
+    """Enhanced karaoke player with professional features"""
+    
+    def __init__(self, instrumental_path: str, sync_json_path: str, song_name: str, 
+                 launch_web_player: bool = True):
+        self.instrumental_path = instrumental_path
+        self.sync_json_path = sync_json_path
+        self.song_name = song_name
+        self.launch_web_player = launch_web_player
         
         # Load sync data
-        sync_data = self.load_sync_data(sync_json_path)
+        with open(sync_json_path, 'r', encoding='utf-8') as f:
+            self.sync_data = json.load(f)
         
-        # Convert file paths to relative paths for web serving
-        audio_file = Path(audio_path).name
-        video_file = Path(video_path).name if video_path else None
+        self.segments = self.sync_data['segments']
+        self.current_segment = -1
+        self.current_word = -1
         
-        # Copy media files to output directory
-        import shutil
-        shutil.copy2(audio_path, self.output_dir / audio_file)
-        if video_path and os.path.exists(video_path):
-            shutil.copy2(video_path, self.output_dir / video_file)
+        # Audio player
+        self.audio_player = AudioPlayer()
         
-        # Generate HTML content
-        html_content = self._create_html_template(
-            audio_file, sync_data, video_file, title
+        # UI state
+        self.is_fullscreen = False
+        self.font_size = 24
+        self.auto_scroll = True
+        
+        # Web player
+        self.web_player_url = None
+        
+        self.setup_player_window()
+        self.load_audio()
+        
+        if self.launch_web_player:
+            self.create_web_player()
+    
+    def setup_player_window(self):
+        """Setup the main karaoke player window"""
+        self.window = tk.Tk()
+        self.window.title(f"🎤 Noraemong Karaoke - {self.song_name}")
+        self.window.geometry("1200x800")
+        self.window.configure(bg='#1a1a1a')
+        
+        # Configure styles
+        self.setup_styles()
+        
+        # Bind keyboard shortcuts
+        self.window.bind('<space>', lambda e: self.toggle_play())
+        self.window.bind('<F11>', lambda e: self.toggle_fullscreen())
+        self.window.bind('<Escape>', lambda e: self.exit_fullscreen())
+        self.window.bind('<Left>', lambda e: self.seek_relative(-10))
+        self.window.bind('<Right>', lambda e: self.seek_relative(10))
+        self.window.bind('<Up>', lambda e: self.change_font_size(2))
+        self.window.bind('<Down>', lambda e: self.change_font_size(-2))
+        
+        # Focus window for keyboard input
+        self.window.focus_set()
+        
+        # Create main layout
+        self.create_main_layout()
+        
+        # Start update loop
+        self.update_display()
+    
+    def setup_styles(self):
+        """Setup custom styles"""
+        self.style = ttk.Style()
+        self.style.theme_use('clam')
+        
+        # Configure styles for dark theme
+        self.style.configure('Dark.TFrame', background='#1a1a1a')
+        self.style.configure('Dark.TLabel', background='#1a1a1a', foreground='#ffffff')
+        self.style.configure('Title.TLabel', background='#1a1a1a', foreground='#3498db', 
+                           font=('Arial', 20, 'bold'))
+        self.style.configure('Control.TButton', font=('Arial', 10, 'bold'))
+        self.style.configure('Big.TButton', font=('Arial', 14, 'bold'), padding=10)
+    
+    def create_main_layout(self):
+        """Create the main player layout"""
+        # Main container
+        self.main_frame = ttk.Frame(self.window, style='Dark.TFrame', padding="20")
+        self.main_frame.pack(fill=tk.BOTH, expand=True)
+        
+        # Title section
+        self.create_title_section()
+        
+        # Control section
+        self.create_control_section()
+        
+        # Progress section
+        self.create_progress_section()
+        
+        # Lyrics section
+        self.create_lyrics_section()
+        
+        # Status section
+        self.create_status_section()
+    
+    def create_title_section(self):
+        """Create title and song info section"""
+        title_frame = ttk.Frame(self.main_frame, style='Dark.TFrame')
+        title_frame.pack(fill=tk.X, pady=(0, 20))
+        
+        # Song title
+        title_label = ttk.Label(title_frame, text=f"🎤 {self.song_name}", 
+                               style='Title.TLabel')
+        title_label.pack()
+        
+        # Song info
+        info_text = f"🎵 {len(self.segments)} lyrics segments"
+        if self.sync_data.get('metadata'):
+            avg_conf = sum(s.get('confidence', 0) for s in self.segments) / len(self.segments)
+            info_text += f" • Quality: {avg_conf:.1%}"
+        
+        info_label = ttk.Label(title_frame, text=info_text, style='Dark.TLabel')
+        info_label.pack()
+    
+    def create_control_section(self):
+        """Create playback control section"""
+        control_frame = ttk.Frame(self.main_frame, style='Dark.TFrame')
+        control_frame.pack(fill=tk.X, pady=(0, 20))
+        
+        # Playback controls
+        play_frame = ttk.Frame(control_frame, style='Dark.TFrame')
+        play_frame.pack(side=tk.LEFT)
+        
+        self.play_btn = ttk.Button(play_frame, text="▶️ Play", 
+                                  command=self.toggle_play, style='Big.TButton')
+        self.play_btn.pack(side=tk.LEFT, padx=(0, 10))
+        
+        stop_btn = ttk.Button(play_frame, text="⏹️ Stop", 
+                             command=self.stop_playback, style='Control.TButton')
+        stop_btn.pack(side=tk.LEFT, padx=(0, 10))
+        
+        restart_btn = ttk.Button(play_frame, text="🔄 Restart", 
+                               command=self.restart_playback, style='Control.TButton')
+        restart_btn.pack(side=tk.LEFT, padx=(0, 10))
+        
+        # Seek controls
+        seek_frame = ttk.Frame(control_frame, style='Dark.TFrame')
+        seek_frame.pack(side=tk.LEFT, padx=(20, 0))
+        
+        ttk.Button(seek_frame, text="⏪ -10s", 
+                  command=lambda: self.seek_relative(-10), style='Control.TButton').pack(side=tk.LEFT, padx=(0, 5))
+        ttk.Button(seek_frame, text="⏩ +10s", 
+                  command=lambda: self.seek_relative(10), style='Control.TButton').pack(side=tk.LEFT)
+        
+        # Volume control
+        volume_frame = ttk.Frame(control_frame, style='Dark.TFrame')
+        volume_frame.pack(side=tk.RIGHT)
+        
+        ttk.Label(volume_frame, text="🔊", style='Dark.TLabel').pack(side=tk.LEFT)
+        self.volume_var = tk.DoubleVar(value=70)
+        volume_scale = ttk.Scale(volume_frame, from_=0, to=100, orient=tk.HORIZONTAL,
+                               variable=self.volume_var, command=self.on_volume_change)
+        volume_scale.pack(side=tk.LEFT, padx=(5, 0))
+        
+        # Display options
+        options_frame = ttk.Frame(control_frame, style='Dark.TFrame')
+        options_frame.pack(side=tk.RIGHT, padx=(20, 0))
+        
+        ttk.Button(options_frame, text="🌐 Web Player", 
+                  command=self.open_web_player, style='Control.TButton').pack(side=tk.LEFT, padx=(0, 5))
+        ttk.Button(options_frame, text="⛶ Fullscreen", 
+                  command=self.toggle_fullscreen, style='Control.TButton').pack(side=tk.LEFT)
+    
+    def create_progress_section(self):
+        """Create progress bar section"""
+        progress_frame = ttk.Frame(self.main_frame, style='Dark.TFrame')
+        progress_frame.pack(fill=tk.X, pady=(0, 20))
+        
+        # Time labels
+        time_frame = ttk.Frame(progress_frame, style='Dark.TFrame')
+        time_frame.pack(fill=tk.X, pady=(0, 5))
+        
+        self.current_time_var = tk.StringVar(value="00:00")
+        self.total_time_var = tk.StringVar(value="00:00")
+        
+        ttk.Label(time_frame, textvariable=self.current_time_var, 
+                 style='Dark.TLabel').pack(side=tk.LEFT)
+        ttk.Label(time_frame, textvariable=self.total_time_var, 
+                 style='Dark.TLabel').pack(side=tk.RIGHT)
+        
+        # Progress bar
+        self.progress_var = tk.DoubleVar()
+        self.progress_bar = ttk.Progressbar(progress_frame, variable=self.progress_var,
+                                           maximum=100)
+        self.progress_bar.pack(fill=tk.X)
+        
+        # Click to seek
+        self.progress_bar.bind("<Button-1>", self.on_progress_click)
+    
+    def create_lyrics_section(self):
+        """Create lyrics display section"""
+        lyrics_frame = ttk.LabelFrame(self.main_frame, text="🎵 Lyrics", padding="15")
+        lyrics_frame.pack(fill=tk.BOTH, expand=True, pady=(0, 20))
+        
+        # Lyrics controls
+        controls_frame = ttk.Frame(lyrics_frame, style='Dark.TFrame')
+        controls_frame.pack(fill=tk.X, pady=(0, 10))
+        
+        # Auto-scroll toggle
+        self.auto_scroll_var = tk.BooleanVar(value=True)
+        auto_scroll_cb = ttk.Checkbutton(controls_frame, text="Auto-scroll", 
+                                        variable=self.auto_scroll_var,
+                                        command=self.on_auto_scroll_change)
+        auto_scroll_cb.pack(side=tk.LEFT)
+        
+        # Font size controls
+        font_frame = ttk.Frame(controls_frame, style='Dark.TFrame')
+        font_frame.pack(side=tk.RIGHT)
+        
+        ttk.Label(font_frame, text="Font:", style='Dark.TLabel').pack(side=tk.LEFT)
+        ttk.Button(font_frame, text="A-", 
+                  command=lambda: self.change_font_size(-2), style='Control.TButton').pack(side=tk.LEFT, padx=(5, 2))
+        ttk.Button(font_frame, text="A+", 
+                  command=lambda: self.change_font_size(2), style='Control.TButton').pack(side=tk.LEFT)
+        
+        # Lyrics display area
+        self.create_lyrics_display(lyrics_frame)
+    
+    def create_lyrics_display(self, parent):
+        """Create scrollable lyrics display"""
+        # Create canvas with scrollbar
+        canvas_frame = ttk.Frame(parent, style='Dark.TFrame')
+        canvas_frame.pack(fill=tk.BOTH, expand=True)
+        
+        self.lyrics_canvas = tk.Canvas(canvas_frame, bg='#2c3e50', highlightthickness=0)
+        scrollbar = ttk.Scrollbar(canvas_frame, orient="vertical", command=self.lyrics_canvas.yview)
+        
+        self.scrollable_frame = tk.Frame(self.lyrics_canvas, bg='#2c3e50')
+        self.scrollable_frame.bind(
+            "<Configure>",
+            lambda e: self.lyrics_canvas.configure(scrollregion=self.lyrics_canvas.bbox("all"))
         )
         
-        # Save HTML file
-        html_path = self.output_dir / "lyrics_player.html"
-        with open(html_path, 'w', encoding='utf-8') as f:
-            f.write(html_content)
+        self.lyrics_canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw")
+        self.lyrics_canvas.configure(yscrollcommand=scrollbar.set)
         
-        print(f"✅ HTML player generated: {html_path}")
-        return str(html_path)
+        self.lyrics_canvas.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
+        
+        # Create lyrics labels
+        self.lyrics_labels = []
+        for i, segment in enumerate(self.segments):
+            label = tk.Label(self.scrollable_frame, 
+                           text=segment['text'],
+                           font=('Arial', self.font_size),
+                           bg='#2c3e50',
+                           fg='#bdc3c7',
+                           wraplength=800,
+                           justify=tk.LEFT,
+                           pady=15,
+                           cursor='hand2')
+            
+            # Click to seek functionality
+            label.bind("<Button-1>", lambda e, idx=i: self.seek_to_segment(idx))
+            
+            label.pack(fill=tk.X, padx=20, pady=5)
+            self.lyrics_labels.append(label)
+        
+        # Mouse wheel scrolling
+        self.lyrics_canvas.bind("<MouseWheel>", self.on_mousewheel)
     
-    def _create_html_template(self, 
-                            audio_file: str, 
-                            sync_data: Dict[str, Any],
-                            video_file: Optional[str] = None,
-                            title: str = "Synchronized Lyrics Player") -> str:
-        """Create the HTML template for the lyrics player."""
+    def create_status_section(self):
+        """Create status bar"""
+        status_frame = ttk.Frame(self.main_frame, style='Dark.TFrame')
+        status_frame.pack(fill=tk.X)
         
-        # Convert sync data to JavaScript format
-        segments_js = self._convert_segments_to_js(sync_data['segments'])
+        # Status info
+        self.status_var = tk.StringVar(value="Ready to play")
+        status_label = ttk.Label(status_frame, textvariable=self.status_var, 
+                                style='Dark.TLabel')
+        status_label.pack(side=tk.LEFT)
         
-        # Determine if we're using video or audio
-        media_element = self._create_media_element(audio_file, video_file)
+        # Segment counter
+        self.segment_var = tk.StringVar(value=f"0 / {len(self.segments)}")
+        segment_label = ttk.Label(status_frame, textvariable=self.segment_var, 
+                                 style='Dark.TLabel')
+        segment_label.pack(side=tk.RIGHT)
         
-        html_template = f"""<!DOCTYPE html>
+        # Keyboard shortcuts help
+        help_text = "Shortcuts: Space=Play/Pause, ←→=Seek, ↑↓=Font, F11=Fullscreen"
+        help_label = ttk.Label(status_frame, text=help_text, 
+                              style='Dark.TLabel', font=('Arial', 8))
+        help_label.pack()
+    
+    def load_audio(self):
+        """Load the instrumental audio"""
+        if self.audio_player.load_audio(self.instrumental_path):
+            total_seconds = int(self.audio_player.total_length)
+            self.total_time_var.set(f"{total_seconds//60:02d}:{total_seconds%60:02d}")
+            self.status_var.set("Audio loaded successfully")
+        else:
+            self.status_var.set("Failed to load audio")
+            messagebox.showerror("Audio Error", "Failed to load instrumental audio")
+    
+    def toggle_play(self):
+        """Toggle play/pause"""
+        if self.audio_player.is_playing:
+            self.audio_player.pause()
+            self.play_btn.config(text="▶️ Play")
+            self.status_var.set("Paused")
+        else:
+            if self.audio_player.play():
+                self.play_btn.config(text="⏸️ Pause")
+                self.status_var.set("Playing")
+            else:
+                messagebox.showerror("Playback Error", "Failed to start playback")
+    
+    def stop_playback(self):
+        """Stop playback"""
+        self.audio_player.stop()
+        self.play_btn.config(text="▶️ Play")
+        self.status_var.set("Stopped")
+        self.current_segment = -1
+        self.update_lyrics_display()
+    
+    def restart_playback(self):
+        """Restart from beginning"""
+        self.audio_player.stop()
+        self.audio_player.current_position = 0
+        self.toggle_play()
+    
+    def seek_relative(self, seconds: float):
+        """Seek relative to current position"""
+        current_pos = self.audio_player.get_position()
+        new_pos = max(0, min(current_pos + seconds, self.audio_player.total_length))
+        self.audio_player.seek(new_pos)
+    
+    def seek_to_segment(self, segment_index: int):
+        """Seek to specific segment"""
+        if 0 <= segment_index < len(self.segments):
+            self.audio_player.seek(self.segments[segment_index]['start_time'])
+    
+    def on_progress_click(self, event):
+        """Handle progress bar click for seeking"""
+        if self.audio_player.total_length > 0:
+            click_ratio = event.x / self.progress_bar.winfo_width()
+            new_position = click_ratio * self.audio_player.total_length
+            self.audio_player.seek(new_position)
+    
+    def on_volume_change(self, value):
+        """Handle volume change"""
+        volume = float(value) / 100.0
+        self.audio_player.set_volume(volume)
+    
+    def on_auto_scroll_change(self):
+        """Handle auto-scroll toggle"""
+        self.auto_scroll = self.auto_scroll_var.get()
+    
+    def change_font_size(self, delta: int):
+        """Change lyrics font size"""
+        new_size = max(12, min(48, self.font_size + delta))
+        if new_size != self.font_size:
+            self.font_size = new_size
+            for label in self.lyrics_labels:
+                label.config(font=('Arial', self.font_size))
+    
+    def on_mousewheel(self, event):
+        """Handle mouse wheel scrolling"""
+        self.lyrics_canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
+    
+    def toggle_fullscreen(self):
+        """Toggle fullscreen mode"""
+        self.is_fullscreen = not self.is_fullscreen
+        self.window.attributes('-fullscreen', self.is_fullscreen)
+        
+        if self.is_fullscreen:
+            self.window.configure(cursor='none')
+        else:
+            self.window.configure(cursor='')
+    
+    def exit_fullscreen(self):
+        """Exit fullscreen mode"""
+        if self.is_fullscreen:
+            self.is_fullscreen = False
+            self.window.attributes('-fullscreen', False)
+            self.window.configure(cursor='')
+    
+    def update_display(self):
+        """Update display elements"""
+        try:
+            # Update time and progress
+            current_time = self.audio_player.get_position()
+            current_seconds = int(current_time)
+            self.current_time_var.set(f"{current_seconds//60:02d}:{current_seconds%60:02d}")
+            
+            if self.audio_player.total_length > 0:
+                progress = (current_time / self.audio_player.total_length) * 100
+                self.progress_var.set(min(progress, 100))
+            
+            # Update lyrics
+            self.update_lyrics_display()
+            
+            # Schedule next update
+            self.window.after(100, self.update_display)
+            
+        except tk.TclError:
+            # Window was closed
+            pass
+    
+    def update_lyrics_display(self):
+        """Update lyrics highlighting based on current time"""
+        current_time = self.audio_player.get_position()
+        new_segment = -1
+        
+        # Find current segment
+        for i, segment in enumerate(self.segments):
+            if segment['start_time'] <= current_time <= segment['end_time']:
+                new_segment = i
+                break
+        
+        # Update highlighting if segment changed
+        if new_segment != self.current_segment:
+            # Remove previous highlighting
+            if 0 <= self.current_segment < len(self.lyrics_labels):
+                self.lyrics_labels[self.current_segment].config(
+                    fg='#bdc3c7', bg='#2c3e50', 
+                    font=('Arial', self.font_size)
+                )
+            
+            # Highlight current segment
+            if 0 <= new_segment < len(self.lyrics_labels):
+                self.lyrics_labels[new_segment].config(
+                    fg='#ffffff', bg='#3498db', 
+                    font=('Arial', self.font_size, 'bold')
+                )
+                
+                # Auto-scroll to current segment
+                if self.auto_scroll:
+                    self.scroll_to_segment(new_segment)
+            
+            self.current_segment = new_segment
+            
+            # Update segment counter
+            current_num = new_segment + 1 if new_segment >= 0 else 0
+            self.segment_var.set(f"{current_num} / {len(self.segments)}")
+    
+    def scroll_to_segment(self, segment_index: int):
+        """Auto-scroll to current segment"""
+        if 0 <= segment_index < len(self.lyrics_labels):
+            label = self.lyrics_labels[segment_index]
+            
+            # Calculate scroll position
+            canvas_height = self.lyrics_canvas.winfo_height()
+            frame_height = self.scrollable_frame.winfo_reqheight()
+            
+            if frame_height > canvas_height:
+                label_y = label.winfo_y()
+                label_height = label.winfo_reqheight()
+                
+                # Calculate target position (center the current line)
+                target_y = label_y + label_height / 2 - canvas_height / 2
+                scroll_fraction = max(0, min(1, target_y / frame_height))
+                
+                self.lyrics_canvas.yview_moveto(scroll_fraction)
+    
+    def create_web_player(self):
+        """Create web-based karaoke player using lyrics_video_player.py approach"""
+        try:
+            # Import the web player module
+            from lyrics_video_player import create_lyrics_video_player
+            
+            # Create temporary directory for web player
+            temp_dir = tempfile.mkdtemp(prefix="noraemong_karaoke_")
+            
+            # Create the web player
+            self.web_player_url = create_lyrics_video_player(
+                audio_path=self.instrumental_path,
+                sync_json_path=self.sync_json_path,
+                output_dir=temp_dir,
+                title=f"🎤 {self.song_name} - Karaoke",
+                auto_open=False,  # Don't auto-open, we'll handle it manually
+                server_port=8080
+            )
+            
+            print(f"🌐 Web player created: {self.web_player_url}")
+            
+        except Exception as e:
+            print(f"❌ Failed to create web player: {e}")
+            self.web_player_url = None
+    
+    def open_web_player(self):
+        """Open web-based karaoke player"""
+        if self.web_player_url:
+            webbrowser.open(self.web_player_url)
+        else:
+            # Fallback: create simple HTML player
+            self.create_simple_web_player()
+    
+    def create_simple_web_player(self):
+        """Create a simple web player as fallback"""
+        try:
+            # Create temporary HTML file
+            temp_dir = tempfile.mkdtemp(prefix="noraemong_simple_")
+            html_file = Path(temp_dir) / "karaoke.html"
+            
+            # Copy audio file to temp directory
+            audio_name = Path(self.instrumental_path).name
+            shutil.copy2(self.instrumental_path, temp_dir / audio_name)
+            
+            # Create simple HTML player
+            html_content = self.generate_simple_html_player(audio_name)
+            
+            with open(html_file, 'w', encoding='utf-8') as f:
+                f.write(html_content)
+            
+            # Open in browser
+            webbrowser.open(f"file://{html_file}")
+            print(f"🌐 Simple web player opened: {html_file}")
+            
+        except Exception as e:
+            print(f"❌ Failed to create simple web player: {e}")
+            messagebox.showerror("Web Player Error", f"Failed to create web player: {str(e)}")
+    
+    def generate_simple_html_player(self, audio_filename: str) -> str:
+        """Generate simple HTML karaoke player"""
+        segments_js = json.dumps(self.segments, indent=2)
+        
+        return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title}</title>
+    <title>🎤 {self.song_name} - Karaoke</title>
     <style>
-        {self._get_css_styles()}
-    </style>
-</head>
-<body>
-    <div class="player-container">
-        <div class="header">
-            <h1>{title}</h1>
-            <div class="controls">
-                <button id="playPauseBtn" class="control-btn">▶️ Play</button>
-                <button id="rewindBtn" class="control-btn">⏪ -10s</button>
-                <button id="forwardBtn" class="control-btn">⏩ +10s</button>
-                <span class="time-display">
-                    <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
-                </span>
-            </div>
-        </div>
-        
-        <div class="media-container">
-            {media_element}
-            <div class="progress-container">
-                <div class="progress-bar">
-                    <div id="progressFill" class="progress-fill"></div>
-                    <div id="progressHandle" class="progress-handle"></div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="lyrics-container">
-            <div id="lyricsDisplay" class="lyrics-display">
-                <div class="lyrics-placeholder">🎵 Lyrics will appear here when audio starts 🎵</div>
-            </div>
-            <div class="lyrics-controls">
-                <label>
-                    <input type="checkbox" id="autoScroll" checked> Auto-scroll lyrics
-                </label>
-                <label>
-                    Font size: <input type="range" id="fontSizeSlider" min="12" max="32" value="18">
-                </label>
-            </div>
-        </div>
-        
-        <div class="info-panel">
-            <div class="sync-info">
-                <strong>Sync Quality:</strong>
-                <span id="syncQuality">Loading...</span>
-            </div>
-            <div class="segment-info">
-                <strong>Current Segment:</strong>
-                <span id="currentSegment">-</span> / <span id="totalSegments">{len(sync_data['segments'])}</span>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Synchronized lyrics data
-        const syncData = {segments_js};
-        
-        {self._get_javascript_code()}
-    </script>
-</body>
-</html>"""
-        
-        return html_template
-    
-    def _create_media_element(self, audio_file: str, video_file: Optional[str]) -> str:
-        """Create the appropriate media element (video or audio)."""
-        if video_file:
-            return f"""
-            <video id="mediaPlayer" class="media-player" controls>
-                <source src="{video_file}" type="video/mp4">
-                <source src="{audio_file}" type="audio/mpeg">
-                Your browser does not support the video element.
-            </video>
-            """
-        else:
-            return f"""
-            <audio id="mediaPlayer" class="media-player" controls>
-                <source src="{audio_file}" type="audio/mpeg">
-                <source src="{audio_file}" type="audio/wav">
-                Your browser does not support the audio element.
-            </audio>
-            <div class="audio-visualizer">
-                <div class="wave-container">
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                </div>
-            </div>
-            """
-    
-    def _convert_segments_to_js(self, segments: List[Dict]) -> str:
-        """Convert segments data to JavaScript format."""
-        js_segments = []
-        
-        for segment in segments:
-            js_segment = {
-                'start_time': segment['start_time'],
-                'end_time': segment['end_time'],
-                'text': segment['text'],
-                'confidence': segment.get('confidence', 0.0),
-                'word_timings': segment.get('word_timings', [])
-            }
-            js_segments.append(js_segment)
-        
-        return json.dumps(js_segments, indent=2)
-    
-    def _get_css_styles(self) -> str:
-        """Get CSS styles for the player."""
-        return """
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
+        body {{
+            font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: white;
-        }
-        
-        .player-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            margin: 0;
             padding: 20px;
-        }
+            color: white;
+            min-height: 100vh;
+        }}
         
-        .header {
+        .container {{
+            max-width: 1000px;
+            margin: 0 auto;
             text-align: center;
-            margin-bottom: 30px;
-        }
+        }}
         
-        .header h1 {
+        h1 {{
             font-size: 2.5em;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
+        }}
         
-        .controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
+        .audio-player {{
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }}
         
-        .control-btn {
+        audio {{
+            width: 100%;
+            max-width: 600px;
+        }}
+        
+        .lyrics-display {{
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 30px;
+            min-height: 400px;
+            max-height: 500px;
+            overflow-y: auto;
+        }}
+        
+        .lyric-line {{
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 24px;
+            line-height: 1.5;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }}
+        
+        .lyric-line:hover {{
+            background: rgba(255,255,255,0.1);
+        }}
+        
+        .lyric-line.current {{
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.02);
+            border-left: 4px solid #4ecdc4;
+            font-weight: bold;
+        }}
+        
+        .lyric-line.past {{
+            opacity: 0.6;
+        }}
+        
+        .controls {{
+            margin: 20px 0;
+        }}
+        
+        .control-btn {{
             background: rgba(255,255,255,0.2);
             border: 2px solid rgba(255,255,255,0.3);
             color: white;
             padding: 10px 20px;
             border-radius: 25px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            margin: 0 5px;
             font-size: 16px;
-        }
+        }}
         
-        .control-btn:hover {
+        .control-btn:hover {{
             background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-        }
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎤 {self.song_name}</h1>
         
-        .time-display {
-            font-size: 18px;
-            font-weight: bold;
-            margin-left: 20px;
-        }
+        <div class="audio-player">
+            <audio id="audioPlayer" controls>
+                <source src="{audio_filename}" type="audio/mpeg">
+                <source src="{audio_filename}" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
         
-        .media-container {
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
+        <div class="controls">
+            <button class="control-btn" onclick="toggleAutoScroll()">🔄 Auto-scroll: ON</button>
+            <button class="control-btn" onclick="changeFontSize(-2)">A-</button>
+            <button class="control-btn" onclick="changeFontSize(2)">A+</button>
+            <button class="control-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+        </div>
         
-        .media-player {
-            width: 100%;
-            max-width: 800px;
-            border-radius: 10px;
-        }
+        <div class="lyrics-display" id="lyricsDisplay">
+            <!-- Lyrics will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        const segments = {segments_js};
+        const audioPlayer = document.getElementById('audioPlayer');
+        const lyricsDisplay = document.getElementById('lyricsDisplay');
         
-        .audio-visualizer {
-            margin-top: 20px;
-            padding: 20px;
-        }
+        let currentSegment = -1;
+        let autoScroll = true;
+        let fontSize = 24;
         
-        .wave-container {
-            display: flex;
-            justify-content: center;
-            align-items: end;
-            gap: 4px;
-            height: 60px;
-        }
+        // Initialize lyrics display
+        function initLyrics() {{
+            lyricsDisplay.innerHTML = '';
+            segments.forEach((segment, index) => {{
+                const lyricDiv = document.createElement('div');
+                lyricDiv.className = 'lyric-line';
+                lyricDiv.id = `line-${{index}}`;
+                lyricDiv.textContent = segment.text;
+                lyricDiv.style.fontSize = fontSize + 'px';
+                
+                // Click to seek
+                lyricDiv.addEventListener('click', () => {{
+                    audioPlayer.currentTime = segment.start_time;
+                }});
+                
+                lyricsDisplay.appendChild(lyricDiv);
+            }});
+        }}
         
-        .wave-bar {
-            width: 6px;
-            background: linear-gradient(to top, #ff6b6b, #4ecdc4);
-            border-radius: 3px;
-            animation: wave 1.5s ease-in-out infinite;
-        }
-        
-        .wave-bar:nth-child(2) { animation-delay: 0.1s; }
-        .wave-bar:nth-child(3) { animation-delay: 0.2s; }
-        .wave-bar:nth-child(4) { animation-delay: 0.3s; }
-        .wave-bar:nth-child(5) { animation-delay: 0.4s; }
-        .wave-bar:nth-child(6) { animation-delay: 0.5s; }
-        .wave-bar:nth-child(7) { animation-delay: 0.6s; }
-        .wave-bar:nth-child(8) { animation-delay: 0.7s; }
-        
-        @keyframes wave {
-            0%, 100% { height: 10px; }
-            50% { height: 40px; }
-        }
-        
-        .progress-container {
-            margin-top: 15px;
-        }
-        
-        .progress-bar {
-            width: 100%;
-            height: 6px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 3px;
-            position: relative;
-            cursor: pointer;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
-            border-radius: 3px;
-            width: 0%;
-            transition: width 0.1s ease;
-        }
-        
-        .progress-handle {
-            position: absolute;
-            top: -3px;
-            width: 12px;
-            height: 12px;
-            background: white;
-            border-radius: 50%;
-            cursor: pointer;
-            transform: translateX(-50%);
-            left: 0%;
-        }
-        
-        .lyrics-container {
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 20px;
-        }
-        
-        .lyrics-display {
-            min-height: 300px;
-            max-height: 400px;
-            overflow-y: auto;
-            padding: 20px;
-            background: rgba(0,0,0,0.2);
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .lyrics-placeholder {
-            text-align: center;
-            font-size: 18px;
-            color: rgba(255,255,255,0.7);
-            margin-top: 100px;
-        }
-        
-        .lyric-line {
-            margin: 15px 0;
-            padding: 10px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            font-size: 18px;
-            line-height: 1.5;
-        }
-        
-        .lyric-line.current {
-            background: rgba(255,255,255,0.2);
-            transform: scale(1.02);
-            border-left: 4px solid #4ecdc4;
-        }
-        
-        .lyric-line.past {
-            opacity: 0.6;
-        }
-        
-        .lyric-line.future {
-            opacity: 0.8;
-        }
-        
-        .word-highlight {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            padding: 2px 4px;
-            border-radius: 4px;
-            color: white;
-            font-weight: bold;
-            transition: all 0.2s ease;
-        }
-        
-        .lyrics-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        .lyrics-controls label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 16px;
-        }
-        
-        .lyrics-controls input[type="range"] {
-            width: 100px;
-        }
-        
-        .info-panel {
-            display: flex;
-            justify-content: space-between;
-            background: rgba(255,255,255,0.1);
-            padding: 15px;
-            border-radius: 10px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .info-panel > div {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        @media (max-width: 768px) {
-            .player-container {
-                padding: 10px;
-            }
+        // Update lyrics highlighting
+        function updateLyrics() {{
+            const currentTime = audioPlayer.currentTime;
+            let newSegment = -1;
             
-            .controls {
-                flex-direction: column;
-                gap: 10px;
-            }
+            for (let i = 0; i < segments.length; i++) {{
+                const segment = segments[i];
+                if (currentTime >= segment.start_time && currentTime <= segment.end_time) {{
+                    newSegment = i;
+                    break;
+                }}
+            }}
             
-            .time-display {
-                margin-left: 0;
-            }
-            
-            .lyrics-controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .info-panel {
-                flex-direction: column;
-            }
-        }
-        """
-    
-    def _get_javascript_code(self) -> str:
-        """Get JavaScript code for the player functionality."""
-        return """
-        class LyricsPlayer {
-            constructor() {
-                this.mediaPlayer = document.getElementById('mediaPlayer');
-                this.lyricsDisplay = document.getElementById('lyricsDisplay');
-                this.currentSegmentIndex = -1;
-                this.currentWordIndex = -1;
-                this.autoScroll = true;
+            if (newSegment !== currentSegment) {{
+                // Remove previous highlighting
+                if (currentSegment >= 0) {{
+                    const prevLine = document.getElementById(`line-${{currentSegment}}`);
+                    if (prevLine) {{
+                        prevLine.classList.remove('current');
+                        prevLine.classList.add('past');
+                    }}
+                }}
                 
-                this.initializePlayer();
-                this.setupEventListeners();
-                this.displaySyncQuality();
-            }
-            
-            initializePlayer() {
-                // Initialize lyrics display
-                this.renderLyrics();
-                
-                // Set up time update
-                this.mediaPlayer.addEventListener('timeupdate', () => {
-                    this.updateLyrics();
-                    this.updateProgress();
-                });
-                
-                // Set up duration display
-                this.mediaPlayer.addEventListener('loadedmetadata', () => {
-                    this.updateDuration();
-                });
-            }
-            
-            setupEventListeners() {
-                // Play/Pause button
-                document.getElementById('playPauseBtn').addEventListener('click', () => {
-                    this.togglePlayPause();
-                });
-                
-                // Rewind button
-                document.getElementById('rewindBtn').addEventListener('click', () => {
-                    this.mediaPlayer.currentTime = Math.max(0, this.mediaPlayer.currentTime - 10);
-                });
-                
-                // Forward button
-                document.getElementById('forwardBtn').addEventListener('click', () => {
-                    this.mediaPlayer.currentTime = Math.min(this.mediaPlayer.duration, this.mediaPlayer.currentTime + 10);
-                });
-                
-                // Auto-scroll checkbox
-                document.getElementById('autoScroll').addEventListener('change', (e) => {
-                    this.autoScroll = e.target.checked;
-                });
-                
-                // Font size slider
-                document.getElementById('fontSizeSlider').addEventListener('input', (e) => {
-                    this.updateFontSize(e.target.value);
-                });
-                
-                // Progress bar click
-                document.querySelector('.progress-bar').addEventListener('click', (e) => {
-                    this.seekToPosition(e);
-                });
-                
-                // Keyboard shortcuts
-                document.addEventListener('keydown', (e) => {
-                    this.handleKeyboard(e);
-                });
-            }
-            
-            renderLyrics() {
-                this.lyricsDisplay.innerHTML = '';
-                
-                syncData.forEach((segment, index) => {
-                    const lyricLine = document.createElement('div');
-                    lyricLine.className = 'lyric-line future';
-                    lyricLine.id = `line-${index}`;
-                    lyricLine.textContent = segment.text;
-                    
-                    // Add confidence indicator
-                    const confidence = Math.round(segment.confidence * 100);
-                    lyricLine.title = `Confidence: ${confidence}%`;
-                    
-                    // Add click to seek functionality
-                    lyricLine.addEventListener('click', () => {
-                        this.mediaPlayer.currentTime = segment.start_time;
-                    });
-                    
-                    this.lyricsDisplay.appendChild(lyricLine);
-                });
-            }
-            
-            updateLyrics() {
-                const currentTime = this.mediaPlayer.currentTime;
-                let newSegmentIndex = -1;
-                
-                // Find current segment
-                for (let i = 0; i < syncData.length; i++) {
-                    const segment = syncData[i];
-                    if (currentTime >= segment.start_time && currentTime <= segment.end_time) {
-                        newSegmentIndex = i;
-                        break;
-                    }
-                }
-                
-                // Update segment highlighting
-                if (newSegmentIndex !== this.currentSegmentIndex) {
-                    this.updateSegmentHighlight(newSegmentIndex);
-                    this.currentSegmentIndex = newSegmentIndex;
-                }
-                
-                // Update word highlighting if we have word timings
-                if (newSegmentIndex >= 0) {
-                    this.updateWordHighlight(newSegmentIndex, currentTime);
-                }
-                
-                // Update segment counter
-                document.getElementById('currentSegment').textContent = 
-                    newSegmentIndex >= 0 ? newSegmentIndex + 1 : '-';
-            }
-            
-            updateSegmentHighlight(newIndex) {
-                // Remove previous highlights
-                document.querySelectorAll('.lyric-line').forEach((line, index) => {
-                    line.classList.remove('current', 'past', 'future');
-                    
-                    if (index < newIndex) {
-                        line.classList.add('past');
-                    } else if (index === newIndex) {
-                        line.classList.add('current');
+                // Add current highlighting
+                if (newSegment >= 0) {{
+                    const currentLine = document.getElementById(`line-${{newSegment}}`);
+                    if (currentLine) {{
+                        currentLine.classList.add('current');
+                        currentLine.classList.remove('past');
                         
-                        // Auto-scroll to current line
-                        if (this.autoScroll) {
-                            line.scrollIntoView({ 
-                                behavior: 'smooth', 
-                                block: 'center' 
-                            });
-                        }
-                    } else {
-                        line.classList.add('future');
-                    }
-                });
-            }
-            
-            updateWordHighlight(segmentIndex, currentTime) {
-                const segment = syncData[segmentIndex];
-                if (!segment.word_timings || segment.word_timings.length === 0) {
-                    return;
-                }
+                        // Auto-scroll
+                        if (autoScroll) {{
+                            currentLine.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
+                        }}
+                    }}
+                }}
                 
-                const line = document.getElementById(`line-${segmentIndex}`);
-                let highlightedText = segment.text;
+                // Update past lines
+                for (let i = 0; i < newSegment; i++) {{
+                    const line = document.getElementById(`line-${{i}}`);
+                    if (line) {{
+                        line.classList.add('past');
+                        line.classList.remove('current');
+                    }}
+                }}
                 
-                // Find current word
-                for (let i = 0; i < segment.word_timings.length; i++) {
-                    const word = segment.word_timings[i];
-                    if (currentTime >= word.start && currentTime <= word.end) {
-                        // Highlight current word
-                        const wordRegex = new RegExp(this.escapeRegex(word.word.trim()), 'i');
-                        highlightedText = highlightedText.replace(wordRegex, 
-                            `<span class="word-highlight">${word.word.trim()}</span>`);
-                        break;
-                    }
-                }
+                // Update future lines
+                for (let i = newSegment + 1; i < segments.length; i++) {{
+                    const line = document.getElementById(`line-${{i}}`);
+                    if (line) {{
+                        line.classList.remove('current', 'past');
+                    }}
+                }}
                 
-                line.innerHTML = highlightedText;
-            }
-            
-            escapeRegex(string) {
-                return string.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');
-            }
-            
-            updateProgress() {
-                if (this.mediaPlayer.duration) {
-                    const progress = (this.mediaPlayer.currentTime / this.mediaPlayer.duration) * 100;
-                    document.getElementById('progressFill').style.width = progress + '%';
-                    document.getElementById('progressHandle').style.left = progress + '%';
-                }
-                
-                // Update time display
-                document.getElementById('currentTime').textContent = 
-                    this.formatTime(this.mediaPlayer.currentTime);
-            }
-            
-            updateDuration() {
-                document.getElementById('duration').textContent = 
-                    this.formatTime(this.mediaPlayer.duration);
-            }
-            
-            formatTime(seconds) {
-                const mins = Math.floor(seconds / 60);
-                const secs = Math.floor(seconds % 60);
-                return `${mins}:${secs.toString().padStart(2, '0')}`;
-            }
-            
-            togglePlayPause() {
-                const btn = document.getElementById('playPauseBtn');
-                if (this.mediaPlayer.paused) {
-                    this.mediaPlayer.play();
-                    btn.textContent = '⏸️ Pause';
-                } else {
-                    this.mediaPlayer.pause();
-                    btn.textContent = '▶️ Play';
-                }
-            }
-            
-            updateFontSize(size) {
-                document.querySelectorAll('.lyric-line').forEach(line => {
-                    line.style.fontSize = size + 'px';
-                });
-            }
-            
-            seekToPosition(event) {
-                const progressBar = event.currentTarget;
-                const rect = progressBar.getBoundingClientRect();
-                const clickX = event.clientX - rect.left;
-                const percentage = clickX / rect.width;
-                
-                if (this.mediaPlayer.duration) {
-                    this.mediaPlayer.currentTime = percentage * this.mediaPlayer.duration;
-                }
-            }
-            
-            handleKeyboard(event) {
-                switch(event.code) {
-                    case 'Space':
-                        event.preventDefault();
-                        this.togglePlayPause();
-                        break;
-                    case 'ArrowLeft':
-                        this.mediaPlayer.currentTime = Math.max(0, this.mediaPlayer.currentTime - 5);
-                        break;
-                    case 'ArrowRight':
-                        this.mediaPlayer.currentTime = Math.min(this.mediaPlayer.duration, this.mediaPlayer.currentTime + 5);
-                        break;
-                }
-            }
-            
-            displaySyncQuality() {
-                const totalSegments = syncData.length;
-                const highConfidence = syncData.filter(s => s.confidence >= 0.8).length;
-                const avgConfidence = syncData.reduce((sum, s) => sum + s.confidence, 0) / totalSegments;
-                
-                const quality = avgConfidence >= 0.8 ? 'Excellent' : 
-                               avgConfidence >= 0.6 ? 'Good' : 
-                               avgConfidence >= 0.4 ? 'Fair' : 'Poor';
-                
-                document.getElementById('syncQuality').textContent = 
-                    `${quality} (${Math.round(avgConfidence * 100)}% avg, ${highConfidence}/${totalSegments} high confidence)`;
-            }
-        }
+                currentSegment = newSegment;
+            }}
+        }}
         
-        // Initialize player when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            new LyricsPlayer();
-        });
-        """
+        // Control functions
+        function toggleAutoScroll() {{
+            autoScroll = !autoScroll;
+            const btn = event.target;
+            btn.textContent = `🔄 Auto-scroll: ${{autoScroll ? 'ON' : 'OFF'}}`;
+        }}
+        
+        function changeFontSize(delta) {{
+            fontSize = Math.max(16, Math.min(48, fontSize + delta));
+            const lines = document.querySelectorAll('.lyric-line');
+            lines.forEach(line => {{
+                line.style.fontSize = fontSize + 'px';
+            }});
+        }}
+        
+        function toggleFullscreen() {{
+            if (!document.fullscreenElement) {{
+                document.documentElement.requestFullscreen();
+            }} else {{
+                document.exitFullscreen();
+            }}
+        }}
+        
+        // Event listeners
+        audioPlayer.addEventListener('timeupdate', updateLyrics);
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {{
+            switch(e.code) {{
+                case 'Space':
+                    e.preventDefault();
+                    if (audioPlayer.paused) {{
+                        audioPlayer.play();
+                    }} else {{
+                        audioPlayer.pause();
+                    }}
+                    break;
+                case 'ArrowLeft':
+                    audioPlayer.currentTime = Math.max(0, audioPlayer.currentTime - 10);
+                    break;
+                case 'ArrowRight':
+                    audioPlayer.currentTime = Math.min(audioPlayer.duration, audioPlayer.currentTime + 10);
+                    break;
+                case 'F11':
+                    e.preventDefault();
+                    toggleFullscreen();
+                    break;
+            }}
+        }});
+        
+        // Initialize
+        initLyrics();
+    </script>
+</body>
+</html>"""
     
-    def start_local_server(self, port: int = 8080) -> str:
-        """Start a local HTTP server to serve the player files."""
-        os.chdir(self.output_dir)
-        
-        class QuietHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
-            def log_message(self, format, *args):
-                pass  # Suppress log messages
-        
+    def show(self):
+        """Show the karaoke player window"""
+        self.window.mainloop()
+    
+    def cleanup(self):
+        """Cleanup resources"""
         try:
-            with socketserver.TCPServer(("", port), QuietHTTPRequestHandler) as httpd:
-                server_url = f"http://localhost:{port}/lyrics_player.html"
-                print(f"🌐 Starting local server at: {server_url}")
-                print("🎵 Opening lyrics player in browser...")
-                
-                # Open browser in a separate thread
-                def open_browser():
-                    time.sleep(1)  # Give server time to start
-                    webbrowser.open(server_url)
-                
-                Thread(target=open_browser, daemon=True).start()
-                
-                print("✅ Server running! Press Ctrl+C to stop.")
-                httpd.serve_forever()
-                
-        except KeyboardInterrupt:
-            print("\n🛑 Server stopped.")
-            return server_url
-        except OSError as e:
-            if "Address already in use" in str(e):
-                print(f"⚠️ Port {port} is busy, trying port {port + 1}...")
-                return self.start_local_server(port + 1)
-            else:
-                raise
+            self.audio_player.stop()
+            pygame.mixer.quit()
+            
+            # Clean up temporary audio file if exists
+            if hasattr(self.audio_player, 'temp_audio_file'):
+                try:
+                    import os
+                    os.unlink(self.audio_player.temp_audio_file)
+                except:
+                    pass
+        except:
+            pass
 
-def create_lyrics_video_player(audio_path: str, 
-                             sync_json_path: str,
-                             video_path: Optional[str] = None,
-                             output_dir: str = "./player_output",
-                             title: str = "Synchronized Lyrics Player",
-                             auto_open: bool = True,
-                             server_port: int = 8080) -> str:
-    """
-    Create and optionally serve a synchronized lyrics video player.
-    
-    Args:
-        audio_path: Path to audio file
-        sync_json_path: Path to synchronized lyrics JSON
-        video_path: Optional path to video file
-        output_dir: Directory to save player files
-        title: Title for the player
-        auto_open: Whether to automatically open in browser
-        server_port: Port for local server
-        
-    Returns:
-        Path to generated HTML file or server URL
-    """
-    print("🎬 Creating synchronized lyrics video player...")
-    
-    # Validate input files
-    if not os.path.exists(audio_path):
-        raise FileNotFoundError(f"Audio file not found: {audio_path}")
-    if not os.path.exists(sync_json_path):
-        raise FileNotFoundError(f"Sync JSON file not found: {sync_json_path}")
-    if video_path and not os.path.exists(video_path):
-        print(f"⚠️ Video file not found, using audio only: {video_path}")
-        video_path = None
-    
-    # Create player
-    player = LyricsVideoPlayer(output_dir)
-    html_path = player.generate_html_player(
-        audio_path, sync_json_path, video_path, title
-    )
-    
-    if auto_open:
-        # Start local server and open in browser
-        try:
-            server_url = player.start_local_server(server_port)
-            return server_url
-        except Exception as e:
-            print(f"❌ Failed to start server: {e}")
-            print(f"📁 You can manually open: {html_path}")
-            return html_path
-    else:
-        return html_path
-
-def main():
-    """Command-line interface for creating lyrics video player."""
-    parser = argparse.ArgumentParser(
-        description="Create synchronized lyrics video player from sync data"
-    )
-    
-    parser.add_argument("audio_file", help="Path to audio file")
-    parser.add_argument("sync_json", help="Path to synchronized lyrics JSON file")
-    parser.add_argument("--video_file", default=None, help="Optional path to video file")
-    parser.add_argument("--output_dir", default="./player_output", 
-                       help="Output directory for player files")
-    parser.add_argument("--title", default="Synchronized Lyrics Player",
-                       help="Title for the player")
-    parser.add_argument("--no_auto_open", action="store_true",
-                       help="Don't automatically open in browser")
-    parser.add_argument("--port", type=int, default=8080,
-                       help="Port for local server")
-    
-    args = parser.parse_args()
-    
+# Integration function for the main GUI
+def launch_enhanced_karaoke_player(instrumental_path: str, sync_json_path: str, song_name: str):
+    """Launch the enhanced karaoke player"""
     try:
-        result = create_lyrics_video_player(
-            audio_path=args.audio_file,
-            sync_json_path=args.sync_json,
-            video_path=args.video_file,
-            output_dir=args.output_dir,
-            title=args.title,
-            auto_open=not args.no_auto_open,
-            server_port=args.port
+        # Try to import pygame
+        import pygame
+        
+        # Create and show player
+        player = EnhancedKaraokePlayer(
+            instrumental_path=instrumental_path,
+            sync_json_path=sync_json_path,
+            song_name=song_name,
+            launch_web_player=True
         )
         
-        print(f"\n🎉 Lyrics video player created!")
-        print(f"📍 Location: {result}")
+        # Setup cleanup on window close
+        def on_closing():
+            player.cleanup()
+            player.window.destroy()
         
+        player.window.protocol("WM_DELETE_WINDOW", on_closing)
+        player.show()
+        
+    except ImportError:
+        # Fallback if pygame not available
+        print("⚠️ pygame not available, launching basic player...")
+        from karaoke_player import KaraokePlayer
+        player = KaraokePlayer(instrumental_path, sync_json_path, song_name)
+        player.show()
     except Exception as e:
-        print(f"❌ Error creating player: {e}")
-        raise
+        raise Exception(f"Failed to launch karaoke player: {str(e)}")
+
+def main():
+    """Test the enhanced karaoke player"""
+    import sys
+    
+    if len(sys.argv) < 4:
+        print("Usage: python karaoke_player.py <instrumental.wav> <sync.json> <song_name>")
+        return
+    
+    instrumental_path = sys.argv[1]
+    sync_json_path = sys.argv[2]
+    song_name = sys.argv[3]
+    
+    launch_enhanced_karaoke_player(instrumental_path, sync_json_path, song_name)
 
 if __name__ == "__main__":
     main()
